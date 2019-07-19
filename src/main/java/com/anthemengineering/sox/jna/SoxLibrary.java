@@ -619,7 +619,7 @@ public interface SoxLibrary extends Library {
 	}
 
 	/** <i>native declaration : sox.h</i> */
-	interface sox_effect_handler_start extends Callback {
+	interface sox_effect_handler extends Callback {
 		/** @param effp < Effect pointer. */
 		int apply(sox_effect_t effp);
 	}
@@ -644,18 +644,6 @@ public interface SoxLibrary extends Library {
 		 * @param osamp < On entry, contains capacity of obuf; on exit, contains number of samples written.
 		 */
 		int apply(sox_effect_t effp, IntByReference obuf, size_t.ByReference osamp);
-	}
-
-	/** <i>native declaration : sox.h</i> */
-	interface sox_effect_handler_stop extends Callback {
-		/** @param effp < Effect pointer. */
-		int apply(sox_effect_t effp);
-	}
-
-	/** <i>native declaration : sox.h</i> */
-	interface sox_effect_handler_kill extends Callback {
-		/** @param effp < Effect pointer. */
-		int apply(sox_effect_t effp);
 	}
 
 	/** <i>native declaration : sox.h</i> */

@@ -1,8 +1,6 @@
 package com.anthemengineering.sox;
 
-import com.anthemengineering.sox.jna.SoxLibrary;
-import com.anthemengineering.sox.jna.sox_effects_chain_t;
-import com.anthemengineering.sox.jna.sox_format_t;
+import com.anthemengineering.sox.jna.*;
 import com.sun.jna.Pointer;
 
 public class SoxMain {
@@ -28,5 +26,9 @@ public class SoxMain {
 
         sox_effects_chain_t chain = SoxLibrary.INSTANCE.sox_create_effects_chain(source.encoding, destination.encoding);
         System.out.println("Created effects chain: " + chain);
+
+        sox_effect_handler_t inputEffectHandler = SoxLibrary.INSTANCE.sox_find_effect("input");
+        sox_effect_t inputEffect = SoxLibrary.INSTANCE.sox_create_effect(inputEffectHandler);
+        System.out.println("Created input effect: " + inputEffect);
     }
 }

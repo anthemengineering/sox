@@ -3,9 +3,7 @@ package com.anthemengineering.sox.jna;
 import com.anthemengineering.sox.jna.SoxLibrary.sox_effect_handler_drain;
 import com.anthemengineering.sox.jna.SoxLibrary.sox_effect_handler_flow;
 import com.anthemengineering.sox.jna.SoxLibrary.sox_effect_handler_getopts;
-import com.anthemengineering.sox.jna.SoxLibrary.sox_effect_handler_kill;
-import com.anthemengineering.sox.jna.SoxLibrary.sox_effect_handler_start;
-import com.anthemengineering.sox.jna.SoxLibrary.sox_effect_handler_stop;
+import com.anthemengineering.sox.jna.SoxLibrary.sox_effect_handler;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import java.util.Arrays;
@@ -39,9 +37,9 @@ public class sox_effect_handler_t extends Structure {
 	public sox_effect_handler_getopts getopts;
 	/**
 	 * < Called to initialize effect (called once per flow).<br>
-	 * C type : sox_effect_handler_start
+	 * C type : sox_effect_handler
 	 */
-	public sox_effect_handler_start start;
+	public sox_effect_handler start;
 	/**
 	 * < Called to process samples.<br>
 	 * C type : sox_effect_handler_flow
@@ -56,12 +54,12 @@ public class sox_effect_handler_t extends Structure {
 	 * < Called to shut down effect (called once per flow).<br>
 	 * C type : sox_effect_handler_stop
 	 */
-	public sox_effect_handler_stop stop;
+	public sox_effect_handler stop;
 	/**
 	 * < Called to shut down effect (called once per effect).<br>
 	 * C type : sox_effect_handler_kill
 	 */
-	public sox_effect_handler_kill kill;
+	public sox_effect_handler kill;
 	/** < Size of private data SoX should pre-allocate for effect */
 	public size_t priv_size;
 	public sox_effect_handler_t() {
