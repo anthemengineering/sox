@@ -2,6 +2,7 @@ package com.anthemengineering.sox;
 
 import com.anthemengineering.sox.jna.*;
 import com.sun.jna.Pointer;
+import com.sun.jna.ptr.PointerByReference;
 
 public class SoxMain {
 
@@ -29,6 +30,15 @@ public class SoxMain {
 
         sox_effect_handler_t inputEffectHandler = SoxLibrary.INSTANCE.sox_find_effect("input");
         sox_effect_t inputEffect = SoxLibrary.INSTANCE.sox_create_effect(inputEffectHandler);
+        SoxLibrary.INSTANCE.sox_effect_options(inputEffect, 1, new PointerByReference[] { new PointerByReference(source.getPointer()) });
         System.out.println("Created input effect: " + inputEffect);
+
+        SoxLibrary.INSTANCE.sox_add_effect(chain, inputEffect, source.signal, destination.signal);
+        System.out.println("Added input effect to chain");
+
+        sox_effect_handler_t outputEffectHandler = SoxLibrary.INSTANCE.sox_find_effect("output");
+        sox_effect_t outputEffect = SoxLibrary.INSTANCE.sox_create_effect(outputEffectHandler);
+        SoxLibrary.INSTANCE.sox_effect_options(outputEffect, 0, (PointerByReference[]) null);
+        System.out.println("Created output effect: " + outputEffect);
     }
 }

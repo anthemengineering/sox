@@ -1170,7 +1170,7 @@ public interface SoxLibrary extends Library {
 	 * @param argc < Number of arguments in argv.<br>
 	 * @param argv < Array of command-line options.<br>
 	 * <i>native declaration : sox.h:2063</i><br>
-	 * @deprecated use the safer methods {@link #sox_effect_options(com.anthemengineering.sox.jna.sox_effect_t, int, java.lang.String[])} and {@link #sox_effect_options(com.anthemengineering.sox.jna.sox_effect_t, int, com.sun.jna.ptr.PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #sox_effect_options(com.anthemengineering.sox.jna.sox_effect_t, int, PointerByReference[])} and {@link #sox_effect_options(com.anthemengineering.sox.jna.sox_effect_t, int, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int sox_effect_options(sox_effect_t effp, int argc, PointerByReference argv);
@@ -1184,7 +1184,7 @@ public interface SoxLibrary extends Library {
 	 * @param argv < Array of command-line options.<br>
 	 * <i>native declaration : sox.h:2063</i>
 	 */
-	int sox_effect_options(sox_effect_t effp, int argc, String[] argv);
+	int sox_effect_options(sox_effect_t effp, int argc, PointerByReference[] argv);
 	/**
 	 * Client API:<br>
 	 * Returns an array containing the known effect handlers.<br>
