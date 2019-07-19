@@ -1,4 +1,5 @@
 package com.anthemengineering.sox.jna;
+
 import com.anthemengineering.sox.jna.SoxLibrary.sox_format_fn_t;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;

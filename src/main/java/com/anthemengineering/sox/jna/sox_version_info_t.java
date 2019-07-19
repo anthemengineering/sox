@@ -1,5 +1,5 @@
 package com.anthemengineering.sox.jna;
-import com.ochafik.lang.jnaerator.runtime.NativeSize;
+
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import java.util.Arrays;
@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class sox_version_info_t extends Structure {
 	/** < structure size = sizeof(sox_version_info_t) */
-	public NativeSize size;
+	public size_t size;
 	/**
 	 * @see sox_version_flags_t<br>
 	 * < feature flags = popen | magic | threads | memopen<br>
@@ -80,7 +80,7 @@ public class sox_version_info_t extends Structure {
 	 * @param arch < arch, for example, "1248 48 44 L OMP"<br>
 	 * C type : const char*
 	 */
-	public sox_version_info_t(NativeSize size, int flags, int version_code, Pointer version, Pointer version_extra, Pointer time, Pointer distro, Pointer compiler, Pointer arch) {
+	public sox_version_info_t(size_t size, int flags, int version_code, Pointer version, Pointer version_extra, Pointer time, Pointer distro, Pointer compiler, Pointer arch) {
 		super();
 		this.size = size;
 		this.flags = flags;

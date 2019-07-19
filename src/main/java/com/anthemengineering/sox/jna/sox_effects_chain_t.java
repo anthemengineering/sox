@@ -1,5 +1,5 @@
 package com.anthemengineering.sox.jna;
-import com.ochafik.lang.jnaerator.runtime.NativeSize;
+
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.IntByReference;
@@ -18,7 +18,7 @@ public class sox_effects_chain_t extends Structure {
 	 */
 	public com.anthemengineering.sox.jna.sox_effect_t.ByReference[] effects;
 	/** < Number of effects to be applied */
-	public NativeSize length;
+	public size_t length;
 	/**
 	 * < Copy of global effects settings<br>
 	 * C type : sox_effects_globals_t
@@ -35,7 +35,7 @@ public class sox_effects_chain_t extends Structure {
 	 */
 	public com.anthemengineering.sox.jna.sox_encodinginfo_t.ByReference out_enc;
 	/** < Size of effects table (including unused entries) */
-	public NativeSize table_size;
+	public size_t table_size;
 	/**
 	 * < Channel interleave buffer<br>
 	 * C type : sox_sample_t*
@@ -61,7 +61,7 @@ public class sox_effects_chain_t extends Structure {
 	 * @param il_buf < Channel interleave buffer<br>
 	 * C type : sox_sample_t*
 	 */
-	public sox_effects_chain_t(com.anthemengineering.sox.jna.sox_effect_t.ByReference effects[], NativeSize length, sox_effects_globals_t global_info, com.anthemengineering.sox.jna.sox_encodinginfo_t.ByReference in_enc, com.anthemengineering.sox.jna.sox_encodinginfo_t.ByReference out_enc, NativeSize table_size, IntByReference il_buf) {
+	public sox_effects_chain_t(com.anthemengineering.sox.jna.sox_effect_t.ByReference effects[], size_t length, sox_effects_globals_t global_info, com.anthemengineering.sox.jna.sox_encodinginfo_t.ByReference in_enc, com.anthemengineering.sox.jna.sox_encodinginfo_t.ByReference out_enc, size_t table_size, IntByReference il_buf) {
 		super();
 		if ((effects.length != this.effects.length)) 
 			throw new IllegalArgumentException("Wrong array size !");

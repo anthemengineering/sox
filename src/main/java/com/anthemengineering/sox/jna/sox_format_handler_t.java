@@ -1,4 +1,5 @@
 package com.anthemengineering.sox.jna;
+
 import com.anthemengineering.sox.jna.SoxLibrary.sox_format_handler_read;
 import com.anthemengineering.sox.jna.SoxLibrary.sox_format_handler_seek;
 import com.anthemengineering.sox.jna.SoxLibrary.sox_format_handler_startread;
@@ -6,7 +7,6 @@ import com.anthemengineering.sox.jna.SoxLibrary.sox_format_handler_startwrite;
 import com.anthemengineering.sox.jna.SoxLibrary.sox_format_handler_stopread;
 import com.anthemengineering.sox.jna.SoxLibrary.sox_format_handler_stopwrite;
 import com.anthemengineering.sox.jna.SoxLibrary.sox_format_handler_write;
-import com.ochafik.lang.jnaerator.runtime.NativeSize;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.DoubleByReference;
@@ -76,7 +76,7 @@ public class sox_format_handler_t extends Structure {
 	public IntByReference write_formats;
 	/** C type : const sox_rate_t* */
 	public DoubleByReference write_rates;
-	public NativeSize priv_size;
+	public size_t priv_size;
 	public sox_format_handler_t() {
 		super();
 	}

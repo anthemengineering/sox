@@ -1,5 +1,5 @@
 package com.anthemengineering.sox.jna;
-import com.ochafik.lang.jnaerator.runtime.NativeSize;
+
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import java.util.Arrays;
@@ -17,11 +17,11 @@ public class sox_fileinfo_t extends Structure {
 	 */
 	public Pointer buf;
 	/** < Size of buffer in bytes */
-	public NativeSize size;
+	public size_t size;
 	/** < Count read into buffer */
-	public NativeSize count;
+	public size_t count;
 	/** < Position in buffer */
-	public NativeSize pos;
+	public size_t pos;
 	public sox_fileinfo_t() {
 		super();
 	}
@@ -35,7 +35,7 @@ public class sox_fileinfo_t extends Structure {
 	 * @param count < Count read into buffer<br>
 	 * @param pos < Position in buffer
 	 */
-	public sox_fileinfo_t(Pointer buf, NativeSize size, NativeSize count, NativeSize pos) {
+	public sox_fileinfo_t(Pointer buf, size_t size, size_t count, size_t pos) {
 		super();
 		this.buf = buf;
 		this.size = size;

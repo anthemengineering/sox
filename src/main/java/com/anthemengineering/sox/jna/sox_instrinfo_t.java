@@ -1,4 +1,5 @@
 package com.anthemengineering.sox.jna;
+
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import java.util.Arrays;

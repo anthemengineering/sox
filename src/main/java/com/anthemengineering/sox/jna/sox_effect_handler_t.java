@@ -1,11 +1,11 @@
 package com.anthemengineering.sox.jna;
+
 import com.anthemengineering.sox.jna.SoxLibrary.sox_effect_handler_drain;
 import com.anthemengineering.sox.jna.SoxLibrary.sox_effect_handler_flow;
 import com.anthemengineering.sox.jna.SoxLibrary.sox_effect_handler_getopts;
 import com.anthemengineering.sox.jna.SoxLibrary.sox_effect_handler_kill;
 import com.anthemengineering.sox.jna.SoxLibrary.sox_effect_handler_start;
 import com.anthemengineering.sox.jna.SoxLibrary.sox_effect_handler_stop;
-import com.ochafik.lang.jnaerator.runtime.NativeSize;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import java.util.Arrays;
@@ -62,7 +62,7 @@ public class sox_effect_handler_t extends Structure {
 	 */
 	public sox_effect_handler_kill kill;
 	/** < Size of private data SoX should pre-allocate for effect */
-	public NativeSize priv_size;
+	public size_t priv_size;
 	public sox_effect_handler_t() {
 		super();
 	}

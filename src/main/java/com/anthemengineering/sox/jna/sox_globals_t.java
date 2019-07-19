@@ -1,6 +1,6 @@
 package com.anthemengineering.sox.jna;
+
 import com.anthemengineering.sox.jna.SoxLibrary.sox_output_message_handler_t;
-import com.ochafik.lang.jnaerator.runtime.NativeSize;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import java.util.Arrays;
@@ -28,8 +28,8 @@ public class sox_globals_t extends Structure {
 	 * C type : sox_bool
 	 */
 	public int repeatable;
-	public NativeSize bufsiz;
-	public NativeSize input_bufsiz;
+	public size_t bufsiz;
+	public size_t input_bufsiz;
 	/**
 	 * < Can be used to re-seed libSoX's PRNG<br>
 	 * C type : sox_int32_t
@@ -67,7 +67,7 @@ public class sox_globals_t extends Structure {
 	 * C type : sox_bool
 	 */
 	public int use_threads;
-	public NativeSize log2_dft_min_size;
+	public size_t log2_dft_min_size;
 	public sox_globals_t() {
 		super();
 	}

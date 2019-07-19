@@ -1,5 +1,5 @@
 package com.anthemengineering.sox.jna;
-import com.ochafik.lang.jnaerator.runtime.NativeSize;
+
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.IntByReference;
@@ -50,9 +50,9 @@ public class sox_effect_t extends Structure {
 	 */
 	public long clips;
 	/** < 1 if MCHAN, number of chans otherwise */
-	public NativeSize flows;
+	public size_t flows;
 	/** < flow number */
-	public NativeSize flow;
+	public size_t flow;
 	/**
 	 * < Effect's private data area (each flow has a separate copy)<br>
 	 * C type : void*
@@ -64,11 +64,11 @@ public class sox_effect_t extends Structure {
 	 */
 	public IntByReference obuf;
 	/** < output buffer: start of valid data section */
-	public NativeSize obeg;
+	public size_t obeg;
 	/** < output buffer: one past valid data section (oend-obeg is length of current content) */
-	public NativeSize oend;
+	public size_t oend;
 	/** < minimum input buffer content required for calling this effect's flow function; set via lsx_effect_set_imin() */
-	public NativeSize imin;
+	public size_t imin;
 	public sox_effect_t() {
 		super();
 	}
