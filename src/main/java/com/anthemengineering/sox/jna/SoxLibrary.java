@@ -1,10 +1,8 @@
 package com.anthemengineering.sox.jna;
-import com.ochafik.lang.jnaerator.runtime.NativeSize;
-import com.ochafik.lang.jnaerator.runtime.NativeSizeByReference;
+
 import com.sun.jna.Callback;
 import com.sun.jna.Library;
 import com.sun.jna.Native;
-import com.sun.jna.NativeLibrary;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.PointerByReference;
@@ -16,92 +14,55 @@ import java.nio.IntBuffer;
  * a tool written by <a href="http://ochafik.com/">Olivier Chafik</a> that <a href="http://code.google.com/p/jnaerator/wiki/CreditsAndLicense">uses a few opensource projects.</a>.<br>
  * For help, please visit <a href="http://nativelibs4java.googlecode.com/">NativeLibs4Java</a> , <a href="http://rococoa.dev.java.net/">Rococoa</a>, or <a href="http://jna.dev.java.net/">JNA</a>.
  */
+@SuppressWarnings({"unused", "JavaDoc"})
 public interface SoxLibrary extends Library {
-	public static final String JNA_LIBRARY_NAME = "sox";
-	public static final NativeLibrary JNA_NATIVE_LIB = NativeLibrary.getInstance(SoxLibrary.JNA_LIBRARY_NAME);
-	public static final SoxLibrary INSTANCE = (SoxLibrary)Native.loadLibrary(SoxLibrary.JNA_LIBRARY_NAME, SoxLibrary.class);
-	/**
-	 * SKIPPED:<br>
-	 * <i>native declaration : sox.h:470</i><br>
-	 * lsx_static_assert_sox_int8_size = 1 / (sizeof(sox_int8_t) == 1)
-	 */
-	/**
-	 * SKIPPED:<br>
-	 * <i>native declaration : sox.h:471</i><br>
-	 * lsx_static_assert_sox_uint8_size = 1 / (sizeof(sox_uint8_t) == 1)
-	 */
-	/**
-	 * SKIPPED:<br>
-	 * <i>native declaration : sox.h:472</i><br>
-	 * lsx_static_assert_sox_int16_size = 1 / (sizeof(sox_int16_t) == 2)
-	 */
-	/**
-	 * SKIPPED:<br>
-	 * <i>native declaration : sox.h:473</i><br>
-	 * lsx_static_assert_sox_uint16_size = 1 / (sizeof(sox_uint16_t) == 2)
-	 */
-	/**
-	 * SKIPPED:<br>
-	 * <i>native declaration : sox.h:474</i><br>
-	 * lsx_static_assert_sox_int32_size = 1 / (sizeof(sox_int32_t) == 4)
-	 */
-	/**
-	 * SKIPPED:<br>
-	 * <i>native declaration : sox.h:475</i><br>
-	 * lsx_static_assert_sox_uint32_size = 1 / (sizeof(sox_uint32_t) == 4)
-	 */
-	/**
-	 * SKIPPED:<br>
-	 * <i>native declaration : sox.h:476</i><br>
-	 * lsx_static_assert_sox_int64_size = 1 / (sizeof(sox_int64_t) == 8)
-	 */
-	/**
-	 * SKIPPED:<br>
-	 * <i>native declaration : sox.h:477</i><br>
-	 * lsx_static_assert_sox_uint64_size = 1 / (sizeof(sox_uint64_t) == 8)
-	 */
+	String JNA_LIBRARY_NAME = "sox";
+	SoxLibrary INSTANCE = Native.load(SoxLibrary.JNA_LIBRARY_NAME, SoxLibrary.class);
+
 	/**
 	 * <i>native declaration : sox.h</i><br>
 	 * enum values
 	 */
-	public static interface sox_bool {
+	interface sox_bool {
 		/**
 		 * Ensure a signed type<br>
 		 * <i>native declaration : sox.h:519</i>
 		 */
-		public static final int sox_bool_dummy = -1;
+		int sox_bool_dummy = -1;
 		/**
 		 * < False = 0.<br>
 		 * <i>native declaration : sox.h:520</i>
 		 */
-		public static final int sox_false = 0;
+		int sox_false = 0;
 		/**
 		 * < True = 1.<br>
 		 * <i>native declaration : sox.h:521</i>
 		 */
-		public static final int sox_true = 1;
-	};
+		int sox_true = 1;
+	}
+
 	/**
 	 * <i>native declaration : sox.h</i><br>
 	 * enum values
 	 */
-	public static interface sox_option_t {
+	interface sox_option_t {
 		/**
 		 * < Option specified as no = 0.<br>
 		 * <i>native declaration : sox.h:529</i>
 		 */
-		public static final int sox_option_no = 0;
+		int sox_option_no = 0;
 		/**
 		 * < Option specified as yes = 1.<br>
 		 * <i>native declaration : sox.h:530</i>
 		 */
-		public static final int sox_option_yes = 1;
+		int sox_option_yes = 1;
 		/**
 		 * < Option unspecified = 2.<br>
 		 * <i>native declaration : sox.h:531</i>
 		 */
-		public static final int sox_option_default = 2;
-	};
+		int sox_option_default = 2;
+	}
+
 	/**
 	 * Client API:<br>
 	 * The libSoX-specific error codes.<br>
@@ -109,282 +70,287 @@ public interface SoxLibrary extends Library {
 	 * <i>native declaration : sox.h:539</i><br>
 	 * enum values
 	 */
-	public static interface sox_error_t {
+	interface sox_error_t {
 		/**
 		 * < Function succeeded = 0<br>
 		 * <i>native declaration : sox.h:540</i>
 		 */
-		public static final int SOX_SUCCESS = 0;
+		int SOX_SUCCESS = 0;
 		/**
 		 * < End Of File or other error = -1<br>
 		 * <i>native declaration : sox.h:541</i>
 		 */
-		public static final int SOX_EOF = -1;
+		int SOX_EOF = -1;
 		/**
 		 * < Invalid Audio Header = 2000<br>
 		 * <i>native declaration : sox.h:542</i>
 		 */
-		public static final int SOX_EHDR = 2000;
+		int SOX_EHDR = 2000;
 		/**
 		 * < Unsupported data format = 2001<br>
 		 * <i>native declaration : sox.h:543</i>
 		 */
-		public static final int SOX_EFMT = 2001;
+		int SOX_EFMT = 2001;
 		/**
 		 * < Can't alloc memory = 2002<br>
 		 * <i>native declaration : sox.h:544</i>
 		 */
-		public static final int SOX_ENOMEM = 2002;
+		int SOX_ENOMEM = 2002;
 		/**
 		 * < Operation not permitted = 2003<br>
 		 * <i>native declaration : sox.h:545</i>
 		 */
-		public static final int SOX_EPERM = 2003;
+		int SOX_EPERM = 2003;
 		/**
 		 * < Operation not supported = 2004<br>
 		 * <i>native declaration : sox.h:546</i>
 		 */
-		public static final int SOX_ENOTSUP = 2004;
+		int SOX_ENOTSUP = 2004;
 		/**
 		 * < Invalid argument = 2005<br>
 		 * <i>native declaration : sox.h:547</i>
 		 */
-		public static final int SOX_EINVAL = 2005;
-	};
+		int SOX_EINVAL = 2005;
+	}
+
 	/**
 	 * <i>native declaration : sox.h</i><br>
 	 * enum values
 	 */
-	public static interface sox_version_flags_t {
+	interface sox_version_flags_t {
 		/**
 		 * < No special features = 0.<br>
 		 * <i>native declaration : sox.h:555</i>
 		 */
-		public static final int sox_version_none = 0;
+		int sox_version_none = 0;
 		/**
 		 * < popen = 1.<br>
 		 * <i>native declaration : sox.h:556</i>
 		 */
-		public static final int sox_version_have_popen = 1;
+		int sox_version_have_popen = 1;
 		/**
 		 * < magic = 2.<br>
 		 * <i>native declaration : sox.h:557</i>
 		 */
-		public static final int sox_version_have_magic = 2;
+		int sox_version_have_magic = 2;
 		/**
 		 * < threads = 4.<br>
 		 * <i>native declaration : sox.h:558</i>
 		 */
-		public static final int sox_version_have_threads = 4;
+		int sox_version_have_threads = 4;
 		/**
 		 * < memopen = 8.<br>
 		 * <i>native declaration : sox.h:559</i>
 		 */
-		public static final int sox_version_have_memopen = 8;
-	};
+		int sox_version_have_memopen = 8;
+	}
+
 	/**
 	 * <i>native declaration : sox.h</i><br>
 	 * enum values
 	 */
-	public static interface sox_encoding_t {
+	interface sox_encoding_t {
 		/**
 		 * < encoding has not yet been determined<br>
 		 * <i>native declaration : sox.h:567</i>
 		 */
-		public static final int SOX_ENCODING_UNKNOWN = 0;
+		int SOX_ENCODING_UNKNOWN = 0;
 		/**
 		 * < signed linear 2's comp: Mac<br>
 		 * <i>native declaration : sox.h:569</i>
 		 */
-		public static final int SOX_ENCODING_SIGN2 = 1;
+		int SOX_ENCODING_SIGN2 = 1;
 		/**
 		 * < unsigned linear: Sound Blaster<br>
 		 * <i>native declaration : sox.h:570</i>
 		 */
-		public static final int SOX_ENCODING_UNSIGNED = 2;
+		int SOX_ENCODING_UNSIGNED = 2;
 		/**
 		 * < floating point (binary format)<br>
 		 * <i>native declaration : sox.h:571</i>
 		 */
-		public static final int SOX_ENCODING_FLOAT = 3;
+		int SOX_ENCODING_FLOAT = 3;
 		/**
 		 * < floating point (text format)<br>
 		 * <i>native declaration : sox.h:572</i>
 		 */
-		public static final int SOX_ENCODING_FLOAT_TEXT = 4;
+		int SOX_ENCODING_FLOAT_TEXT = 4;
 		/**
 		 * < FLAC compression<br>
 		 * <i>native declaration : sox.h:573</i>
 		 */
-		public static final int SOX_ENCODING_FLAC = 5;
+		int SOX_ENCODING_FLAC = 5;
 		/**
 		 * < Mac FSSD files with Huffman compression<br>
 		 * <i>native declaration : sox.h:574</i>
 		 */
-		public static final int SOX_ENCODING_HCOM = 6;
+		int SOX_ENCODING_HCOM = 6;
 		/**
 		 * < WavPack with integer samples<br>
 		 * <i>native declaration : sox.h:575</i>
 		 */
-		public static final int SOX_ENCODING_WAVPACK = 7;
+		int SOX_ENCODING_WAVPACK = 7;
 		/**
 		 * < WavPack with float samples<br>
 		 * <i>native declaration : sox.h:576</i>
 		 */
-		public static final int SOX_ENCODING_WAVPACKF = 8;
+		int SOX_ENCODING_WAVPACKF = 8;
 		/**
 		 * < u-law signed logs: US telephony, SPARC<br>
 		 * <i>native declaration : sox.h:577</i>
 		 */
-		public static final int SOX_ENCODING_ULAW = 9;
+		int SOX_ENCODING_ULAW = 9;
 		/**
 		 * < A-law signed logs: non-US telephony, Psion<br>
 		 * <i>native declaration : sox.h:578</i>
 		 */
-		public static final int SOX_ENCODING_ALAW = 10;
+		int SOX_ENCODING_ALAW = 10;
 		/**
 		 * < G.721 4-bit ADPCM<br>
 		 * <i>native declaration : sox.h:579</i>
 		 */
-		public static final int SOX_ENCODING_G721 = 11;
+		int SOX_ENCODING_G721 = 11;
 		/**
 		 * < G.723 3 or 5 bit ADPCM<br>
 		 * <i>native declaration : sox.h:580</i>
 		 */
-		public static final int SOX_ENCODING_G723 = 12;
+		int SOX_ENCODING_G723 = 12;
 		/**
 		 * < Creative Labs 8 --> 2,3,4 bit Compressed PCM<br>
 		 * <i>native declaration : sox.h:581</i>
 		 */
-		public static final int SOX_ENCODING_CL_ADPCM = 13;
+		int SOX_ENCODING_CL_ADPCM = 13;
 		/**
 		 * < Creative Labs 16 --> 4 bit Compressed PCM<br>
 		 * <i>native declaration : sox.h:582</i>
 		 */
-		public static final int SOX_ENCODING_CL_ADPCM16 = 14;
+		int SOX_ENCODING_CL_ADPCM16 = 14;
 		/**
 		 * < Microsoft Compressed PCM<br>
 		 * <i>native declaration : sox.h:583</i>
 		 */
-		public static final int SOX_ENCODING_MS_ADPCM = 15;
+		int SOX_ENCODING_MS_ADPCM = 15;
 		/**
 		 * < IMA Compressed PCM<br>
 		 * <i>native declaration : sox.h:584</i>
 		 */
-		public static final int SOX_ENCODING_IMA_ADPCM = 16;
+		int SOX_ENCODING_IMA_ADPCM = 16;
 		/**
 		 * < Dialogic/OKI Compressed PCM<br>
 		 * <i>native declaration : sox.h:585</i>
 		 */
-		public static final int SOX_ENCODING_OKI_ADPCM = 17;
+		int SOX_ENCODING_OKI_ADPCM = 17;
 		/**
 		 * < Differential PCM: Fasttracker 2 (xi)<br>
 		 * <i>native declaration : sox.h:586</i>
 		 */
-		public static final int SOX_ENCODING_DPCM = 18;
+		int SOX_ENCODING_DPCM = 18;
 		/**
 		 * < Delta Width Variable Word<br>
 		 * <i>native declaration : sox.h:587</i>
 		 */
-		public static final int SOX_ENCODING_DWVW = 19;
+		int SOX_ENCODING_DWVW = 19;
 		/**
 		 * < Delta Width Variable Word N-bit<br>
 		 * <i>native declaration : sox.h:588</i>
 		 */
-		public static final int SOX_ENCODING_DWVWN = 20;
+		int SOX_ENCODING_DWVWN = 20;
 		/**
 		 * < GSM 6.10 33byte frame lossy compression<br>
 		 * <i>native declaration : sox.h:589</i>
 		 */
-		public static final int SOX_ENCODING_GSM = 21;
+		int SOX_ENCODING_GSM = 21;
 		/**
 		 * < MP3 compression<br>
 		 * <i>native declaration : sox.h:590</i>
 		 */
-		public static final int SOX_ENCODING_MP3 = 22;
+		int SOX_ENCODING_MP3 = 22;
 		/**
 		 * < Vorbis compression<br>
 		 * <i>native declaration : sox.h:591</i>
 		 */
-		public static final int SOX_ENCODING_VORBIS = 23;
+		int SOX_ENCODING_VORBIS = 23;
 		/**
 		 * < AMR-WB compression<br>
 		 * <i>native declaration : sox.h:592</i>
 		 */
-		public static final int SOX_ENCODING_AMR_WB = 24;
+		int SOX_ENCODING_AMR_WB = 24;
 		/**
 		 * < AMR-NB compression<br>
 		 * <i>native declaration : sox.h:593</i>
 		 */
-		public static final int SOX_ENCODING_AMR_NB = 25;
+		int SOX_ENCODING_AMR_NB = 25;
 		/**
 		 * < Continuously Variable Slope Delta modulation<br>
 		 * <i>native declaration : sox.h:594</i>
 		 */
-		public static final int SOX_ENCODING_CVSD = 26;
+		int SOX_ENCODING_CVSD = 26;
 		/**
 		 * < Linear Predictive Coding<br>
 		 * <i>native declaration : sox.h:595</i>
 		 */
-		public static final int SOX_ENCODING_LPC10 = 27;
+		int SOX_ENCODING_LPC10 = 27;
 		/**
 		 * < Opus compression<br>
 		 * <i>native declaration : sox.h:596</i>
 		 */
-		public static final int SOX_ENCODING_OPUS = 28;
+		int SOX_ENCODING_OPUS = 28;
 		/**
 		 * < End of list marker<br>
 		 * <i>native declaration : sox.h:598</i>
 		 */
-		public static final int SOX_ENCODINGS = 29;
-	};
+		int SOX_ENCODINGS = 29;
+	}
+
 	/**
 	 * <i>native declaration : sox.h</i><br>
 	 * enum values
 	 */
-	public static interface sox_encodings_flags_t {
+	interface sox_encodings_flags_t {
 		/**
 		 * < no flags specified (implies lossless encoding) = 0.<br>
 		 * <i>native declaration : sox.h:606</i>
 		 */
-		public static final int sox_encodings_none = 0;
+		int sox_encodings_none = 0;
 		/**
 		 * < encode, decode: lossy once = 1.<br>
 		 * <i>native declaration : sox.h:607</i>
 		 */
-		public static final int sox_encodings_lossy1 = 1;
+		int sox_encodings_lossy1 = 1;
 		/**
 		 * < encode, decode, encode, decode: lossy twice = 2.<br>
 		 * <i>native declaration : sox.h:608</i>
 		 */
-		public static final int sox_encodings_lossy2 = 2;
-	};
+		int sox_encodings_lossy2 = 2;
+	}
+
 	/**
 	 * <i>native declaration : sox.h</i><br>
 	 * enum values
 	 */
-	public static interface sox_plot_t {
+	interface sox_plot_t {
 		/**
 		 * < No plot = 0.<br>
 		 * <i>native declaration : sox.h:616</i>
 		 */
-		public static final int sox_plot_off = 0;
+		int sox_plot_off = 0;
 		/**
 		 * < Octave plot = 1.<br>
 		 * <i>native declaration : sox.h:617</i>
 		 */
-		public static final int sox_plot_octave = 1;
+		int sox_plot_octave = 1;
 		/**
 		 * < Gnuplot plot = 2.<br>
 		 * <i>native declaration : sox.h:618</i>
 		 */
-		public static final int sox_plot_gnuplot = 2;
+		int sox_plot_gnuplot = 2;
 		/**
 		 * < Plot data = 3.<br>
 		 * <i>native declaration : sox.h:619</i>
 		 */
-		public static final int sox_plot_data = 3;
-	};
+		int sox_plot_data = 3;
+	}
+
 	/**
 	 * Client API:<br>
 	 * Loop modes: upper 4 bits mask the loop blass, lower 4 bits describe<br>
@@ -392,180 +358,184 @@ public interface SoxLibrary extends Library {
 	 * <i>native declaration : sox.h:627</i><br>
 	 * enum values
 	 */
-	public static interface sox_loop_flags_t {
+	interface sox_loop_flags_t {
 		/**
 		 * < single-shot = 0<br>
 		 * <i>native declaration : sox.h:628</i>
 		 */
-		public static final int sox_loop_none = 0;
+		int sox_loop_none = 0;
 		/**
 		 * < forward loop = 1<br>
 		 * <i>native declaration : sox.h:629</i>
 		 */
-		public static final int sox_loop_forward = 1;
+		int sox_loop_forward = 1;
 		/**
 		 * < forward/back loop = 2<br>
 		 * <i>native declaration : sox.h:630</i>
 		 */
-		public static final int sox_loop_forward_back = 2;
+		int sox_loop_forward_back = 2;
 		/**
 		 * < 8 loops (] = 32<br>
 		 * <i>native declaration : sox.h:631</i>
 		 */
-		public static final int sox_loop_8 = 32;
+		int sox_loop_8 = 32;
 		/**
 		 * < AIFF style, one sustain & one decay loop = 64<br>
 		 * <i>native declaration : sox.h:632</i>
 		 */
-		public static final int sox_loop_sustain_decay = 64;
-	};
+		int sox_loop_sustain_decay = 64;
+	}
+
 	/**
 	 * <i>native declaration : sox.h</i><br>
 	 * enum values
 	 */
-	public static interface lsx_io_type {
+	interface lsx_io_type {
 		/**
 		 * < File is a real file = 0.<br>
 		 * <i>native declaration : sox.h:641</i>
 		 */
-		public static final int lsx_io_file = 0;
+		int lsx_io_file = 0;
 		/**
 		 * < File is a pipe (no seeking) = 1.<br>
 		 * <i>native declaration : sox.h:642</i>
 		 */
-		public static final int lsx_io_pipe = 1;
+		int lsx_io_pipe = 1;
 		/**
 		 * < File is a URL (no seeking) = 2.<br>
 		 * <i>native declaration : sox.h:643</i>
 		 */
-		public static final int lsx_io_url = 2;
-	};
+		int lsx_io_url = 2;
+	}
+
 	/** < Default parameters (case-insensitive). */
-	public static final int lsx_find_enum_item_none = 0;
+	int lsx_find_enum_item_none = 0;
 	/** < Enable case-sensitive search. */
-	public static final int lsx_find_enum_item_case_sensitive = 1;
+	int lsx_find_enum_item_case_sensitive = 1;
 	/**
 	 * <i>native declaration : sox.h</i><br>
 	 * enum values
 	 */
-	public static interface lsx_option_arg_t {
+	interface lsx_option_arg_t {
 		/**
 		 * < Option does not have an argument.<br>
 		 * <i>native declaration : sox.h:2535</i>
 		 */
-		public static final int lsx_option_arg_none = 0;
+		int lsx_option_arg_none = 0;
 		/**
 		 * < Option requires an argument.<br>
 		 * <i>native declaration : sox.h:2536</i>
 		 */
-		public static final int lsx_option_arg_required = 1;
+		int lsx_option_arg_required = 1;
 		/**
 		 * < Option can optionally be followed by an argument.<br>
 		 * <i>native declaration : sox.h:2537</i>
 		 */
-		public static final int lsx_option_arg_optional = 2;
-	};
+		int lsx_option_arg_optional = 2;
+	}
+
 	/**
 	 * <i>native declaration : sox.h</i><br>
 	 * enum values
 	 */
-	public static interface lsx_getopt_flags_t {
+	interface lsx_getopt_flags_t {
 		/**
 		 * < no flags (no output, not long-only)<br>
 		 * <i>native declaration : sox.h:2545</i>
 		 */
-		public static final int lsx_getopt_flag_none = 0;
+		int lsx_getopt_flag_none = 0;
 		/**
 		 * < if set, invalid options trigger lsx_warn output<br>
 		 * <i>native declaration : sox.h:2546</i>
 		 */
-		public static final int lsx_getopt_flag_opterr = 1;
+		int lsx_getopt_flag_opterr = 1;
 		/**
 		 * < if set, recognize -option as a long option<br>
 		 * <i>native declaration : sox.h:2547</i>
 		 */
-		public static final int lsx_getopt_flag_longonly = 2;
-	};
+		int lsx_getopt_flag_longonly = 2;
+	}
+
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_LIB_VERSION_CODE = (int)(((14) << 16) + ((4) << 8) + (2));
+	int SOX_LIB_VERSION_CODE = ((14) << 16) + ((4) << 8) + (2);
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_INT8_MAX = (int)(-1 >> (33 - (8)));
+	int SOX_INT8_MAX = -1 >> (33 - (8));
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_INT16_MAX = (int)(-1 >> (33 - (16)));
+	int SOX_INT16_MAX = -1 >> (33 - (16));
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_INT24_MAX = (int)(-1 >> (33 - (24)));
+	int SOX_INT24_MAX = -1 >> (33 - (24));
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_INT32_MAX = (int)(-1 >> (33 - (32)));
+	int SOX_INT32_MAX = -1 >> (33 - (32));
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_SAMPLE_PRECISION = (int)32;
+	int SOX_SAMPLE_PRECISION = 32;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_SAMPLE_NEG = (int)(1 << ((32) - 1));
+	int SOX_SAMPLE_NEG = 1 << ((32) - 1);
 	/** <i>native declaration : sox.h</i> */
-	public static final NativeSize SOX_SIZE_MAX = (NativeSize)(-1);
+	size_t SOX_SIZE_MAX = new size_t(-1);
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_UNSPEC = (int)0;
+	int SOX_UNSPEC = 0;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_DEFAULT_CHANNELS = (int)2;
+	int SOX_DEFAULT_CHANNELS = 2;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_DEFAULT_RATE = (int)48000;
+	int SOX_DEFAULT_RATE = 48000;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_DEFAULT_PRECISION = (int)16;
+	int SOX_DEFAULT_PRECISION = 16;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_MAX_NLOOPS = (int)8;
+	int SOX_MAX_NLOOPS = 8;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_FILE_NOSTDIO = (int)0x0001;
+	int SOX_FILE_NOSTDIO = 0x0001;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_FILE_DEVICE = (int)0x0002;
+	int SOX_FILE_DEVICE = 0x0002;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_FILE_PHONY = (int)0x0004;
+	int SOX_FILE_PHONY = 0x0004;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_FILE_REWIND = (int)0x0008;
+	int SOX_FILE_REWIND = 0x0008;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_FILE_BIT_REV = (int)0x0010;
+	int SOX_FILE_BIT_REV = 0x0010;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_FILE_NIB_REV = (int)0x0020;
+	int SOX_FILE_NIB_REV = 0x0020;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_FILE_ENDIAN = (int)0x0040;
+	int SOX_FILE_ENDIAN = 0x0040;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_FILE_ENDBIG = (int)0x0080;
+	int SOX_FILE_ENDBIG = 0x0080;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_FILE_MONO = (int)0x0100;
+	int SOX_FILE_MONO = 0x0100;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_FILE_STEREO = (int)0x0200;
+	int SOX_FILE_STEREO = 0x0200;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_FILE_QUAD = (int)0x0400;
+	int SOX_FILE_QUAD = 0x0400;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_FILE_CHANS = (int)(0x0100 | 0x0200 | 0x0400);
+	int SOX_FILE_CHANS = 0x0100 | 0x0200 | 0x0400;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_FILE_LIT_END = (int)(0x0040 | 0);
+	int SOX_FILE_LIT_END = 0x0040;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_FILE_BIG_END = (int)(0x0040 | 0x0080);
+	int SOX_FILE_BIG_END = 0x0040 | 0x0080;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_EFF_CHAN = (int)1;
+	int SOX_EFF_CHAN = 1;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_EFF_RATE = (int)2;
+	int SOX_EFF_RATE = 2;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_EFF_PREC = (int)4;
+	int SOX_EFF_PREC = 4;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_EFF_LENGTH = (int)8;
+	int SOX_EFF_LENGTH = 8;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_EFF_MCHAN = (int)16;
+	int SOX_EFF_MCHAN = 16;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_EFF_NULL = (int)32;
+	int SOX_EFF_NULL = 32;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_EFF_DEPRECATED = (int)64;
+	int SOX_EFF_DEPRECATED = 64;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_EFF_GAIN = (int)128;
+	int SOX_EFF_GAIN = 128;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_EFF_MODIFY = (int)256;
+	int SOX_EFF_MODIFY = 256;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_EFF_ALPHA = (int)512;
+	int SOX_EFF_ALPHA = 512;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_EFF_INTERNAL = (int)1024;
+	int SOX_EFF_INTERNAL = 1024;
 	/** <i>native declaration : sox.h</i> */
-	public static final int SOX_SEEK_SET = (int)0;
+	int SOX_SEEK_SET = 0;
 	/** <i>native declaration : sox.h</i> */
-	public interface sox_output_message_handler_t extends Callback {
+	interface sox_output_message_handler_t extends Callback {
 		/**
 		 * @param level < 1 = FAIL, 2 = WARN, 3 = INFO, 4 = DEBUG, 5 = DEBUG_MORE, 6 = DEBUG_MOST.<br>
 		 * @param filename < Source code __FILENAME__ from which message originates.<br>
@@ -573,77 +543,89 @@ public interface SoxLibrary extends Library {
 		 * @param ap < Message format parameters.
 		 */
 		void apply(int level, Pointer filename, Pointer fmt, Object... ap);
-	};
+	}
+
 	/** <i>native declaration : sox.h</i> */
-	public interface sox_format_fn_t extends Callback {
+	interface sox_format_fn_t extends Callback {
 		sox_format_handler_t apply();
-	};
+	}
+
 	/** <i>native declaration : sox.h</i> */
-	public interface sox_effect_fn_t extends Callback {
+	interface sox_effect_fn_t extends Callback {
 		sox_effect_handler_t apply();
-	};
+	}
+
 	/** <i>native declaration : sox.h</i> */
-	public interface sox_format_handler_startread extends Callback {
+	interface sox_format_handler_startread extends Callback {
 		/** @param ft < Format pointer. */
 		int apply(sox_format_t ft);
-	};
+	}
+
 	/** <i>native declaration : sox.h</i> */
-	public interface sox_format_handler_read extends Callback {
+	interface sox_format_handler_read extends Callback {
 		/**
 		 * @param ft < Format pointer.<br>
 		 * @param buf < Buffer from which to read samples.<br>
 		 * @param len < Number of samples available in buf.
 		 */
-		NativeSize apply(sox_format_t ft, IntByReference buf, NativeSize len);
-	};
+		size_t apply(sox_format_t ft, IntByReference buf, size_t len);
+	}
+
 	/** <i>native declaration : sox.h</i> */
-	public interface sox_format_handler_stopread extends Callback {
+	interface sox_format_handler_stopread extends Callback {
 		/** @param ft < Format pointer. */
 		int apply(sox_format_t ft);
-	};
+	}
+
 	/** <i>native declaration : sox.h</i> */
-	public interface sox_format_handler_startwrite extends Callback {
+	interface sox_format_handler_startwrite extends Callback {
 		/** @param ft < Format pointer. */
 		int apply(sox_format_t ft);
-	};
+	}
+
 	/** <i>native declaration : sox.h</i> */
-	public interface sox_format_handler_write extends Callback {
+	interface sox_format_handler_write extends Callback {
 		/**
 		 * @param ft < Format pointer.<br>
 		 * @param buf < Buffer to which samples are written.<br>
 		 * @param len < Capacity of buf, measured in samples.
 		 */
-		NativeSize apply(sox_format_t ft, IntByReference buf, NativeSize len);
-	};
+		size_t apply(sox_format_t ft, IntByReference buf, size_t len);
+	}
+
 	/** <i>native declaration : sox.h</i> */
-	public interface sox_format_handler_stopwrite extends Callback {
+	interface sox_format_handler_stopwrite extends Callback {
 		/** @param ft < Format pointer. */
 		int apply(sox_format_t ft);
-	};
+	}
+
 	/** <i>native declaration : sox.h</i> */
-	public interface sox_format_handler_seek extends Callback {
+	interface sox_format_handler_seek extends Callback {
 		/**
 		 * @param ft < Format pointer.<br>
 		 * @param offset < Sample offset to which reader should be positioned.
 		 */
 		int apply(sox_format_t ft, long offset);
-	};
+	}
+
 	/** <i>native declaration : sox.h</i> */
-	public interface sox_effect_handler_getopts extends Callback {
+	interface sox_effect_handler_getopts extends Callback {
 		/**
 		 * @param effp < Effect pointer.<br>
 		 * @param argc < Number of arguments in argv.<br>
 		 * @param argv < Array of command-line arguments.
 		 */
 		int apply(sox_effect_t effp, int argc, PointerByReference argv);
-	};
+	}
+
 	/** <i>native declaration : sox.h</i> */
-	public interface sox_effect_handler_start extends Callback {
+	interface sox_effect_handler_start extends Callback {
 		/** @param effp < Effect pointer. */
 		int apply(sox_effect_t effp);
-	};
+	}
+
 	/** <i>native declaration : sox.h</i> */
-	public interface sox_effect_handler_flow extends Callback {
+	interface sox_effect_handler_flow extends Callback {
 		/**
 		 * @param effp < Effect pointer.<br>
 		 * @param ibuf < Buffer from which to read samples.<br>
@@ -651,43 +633,50 @@ public interface SoxLibrary extends Library {
 		 * @param isamp < On entry, contains capacity of ibuf; on exit, contains number of samples consumed.<br>
 		 * @param osamp < On entry, contains capacity of obuf; on exit, contains number of samples written.
 		 */
-		int apply(sox_effect_t effp, IntByReference ibuf, IntByReference obuf, NativeSizeByReference isamp, NativeSizeByReference osamp);
-	};
+		int apply(sox_effect_t effp, IntByReference ibuf, IntByReference obuf, size_t.ByReference isamp, size_t.ByReference osamp);
+	}
+
 	/** <i>native declaration : sox.h</i> */
-	public interface sox_effect_handler_drain extends Callback {
+	interface sox_effect_handler_drain extends Callback {
 		/**
 		 * @param effp < Effect pointer.<br>
 		 * @param obuf < Buffer to which samples are written.<br>
 		 * @param osamp < On entry, contains capacity of obuf; on exit, contains number of samples written.
 		 */
-		int apply(sox_effect_t effp, IntByReference obuf, NativeSizeByReference osamp);
-	};
+		int apply(sox_effect_t effp, IntByReference obuf, size_t.ByReference osamp);
+	}
+
 	/** <i>native declaration : sox.h</i> */
-	public interface sox_effect_handler_stop extends Callback {
+	interface sox_effect_handler_stop extends Callback {
 		/** @param effp < Effect pointer. */
 		int apply(sox_effect_t effp);
-	};
+	}
+
 	/** <i>native declaration : sox.h</i> */
-	public interface sox_effect_handler_kill extends Callback {
+	interface sox_effect_handler_kill extends Callback {
 		/** @param effp < Effect pointer. */
 		int apply(sox_effect_t effp);
-	};
+	}
+
 	/** <i>native declaration : sox.h</i> */
-	public interface sox_flow_effects_callback extends Callback {
+	interface sox_flow_effects_callback extends Callback {
 		int apply(int all_done, Pointer client_data);
-	};
+	}
+
 	/** <i>native declaration : sox.h</i> */
-	public interface sox_playlist_callback_t extends Callback {
+	interface sox_playlist_callback_t extends Callback {
 		int apply(Pointer callback_data, Pointer filename);
-	};
+	}
+
 	/** <i>native declaration : sox.h:1918</i> */
-	public interface sox_open_write_overwrite_permitted_callback extends Callback {
+	interface sox_open_write_overwrite_permitted_callback extends Callback {
 		int apply(Pointer filename);
-	};
+	}
+
 	/**
 	 * Client API:<br>
 	 * Returns version number string of libSoX, for example, "14.4.0".<br>
-	 * @returns The version number string of libSoX, for example, "14.4.0".<br>
+	 * @returns The version number string of libSoX, for example, "14.4.0".
 	 * Original signature : <code>const char* sox_version()</code><br>
 	 * <i>native declaration : sox.h:1650</i>
 	 */
@@ -748,7 +737,7 @@ public interface SoxLibrary extends Library {
 	 * @param comments < Metadata block.<br>
 	 * <i>native declaration : sox.h:1732</i>
 	 */
-	NativeSize sox_num_comments(PointerByReference comments);
+	size_t sox_num_comments(PointerByReference comments);
 	/**
 	 * Client API:<br>
 	 * Adds an "id=value" item to the metadata block.<br>
@@ -904,10 +893,10 @@ public interface SoxLibrary extends Library {
 	 * @param encoding < Information already known about sample encoding, or NULL if none.<br>
 	 * @param filetype < Previously-determined file type, or NULL to auto-detect.<br>
 	 * <i>native declaration : sox.h:1867</i><br>
-	 * @deprecated use the safer methods {@link #sox_open_mem_read(com.sun.jna.Pointer, com.ochafik.lang.jnaerator.runtime.NativeSize, com.anthemengineering.sox.jna.sox_signalinfo_t, com.anthemengineering.sox.jna.sox_encodinginfo_t, java.lang.String)} and {@link #sox_open_mem_read(com.sun.jna.Pointer, com.ochafik.lang.jnaerator.runtime.NativeSize, com.anthemengineering.sox.jna.sox_signalinfo_t, com.anthemengineering.sox.jna.sox_encodinginfo_t, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #sox_open_mem_read(com.sun.jna.Pointer, size_t, com.anthemengineering.sox.jna.sox_signalinfo_t, com.anthemengineering.sox.jna.sox_encodinginfo_t, java.lang.String)} and {@link #sox_open_mem_read(com.sun.jna.Pointer, size_t, com.anthemengineering.sox.jna.sox_signalinfo_t, com.anthemengineering.sox.jna.sox_encodinginfo_t, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	sox_format_t sox_open_mem_read(Pointer buffer, NativeSize buffer_size, sox_signalinfo_t signal, sox_encodinginfo_t encoding, Pointer filetype);
+	sox_format_t sox_open_mem_read(Pointer buffer, size_t buffer_size, sox_signalinfo_t signal, sox_encodinginfo_t encoding, Pointer filetype);
 	/**
 	 * Client API:<br>
 	 * Opens a decoding session for a memory buffer. Returned handle must be closed with sox_close().<br>
@@ -920,7 +909,7 @@ public interface SoxLibrary extends Library {
 	 * @param filetype < Previously-determined file type, or NULL to auto-detect.<br>
 	 * <i>native declaration : sox.h:1867</i>
 	 */
-	sox_format_t sox_open_mem_read(Pointer buffer, NativeSize buffer_size, sox_signalinfo_t signal, sox_encodinginfo_t encoding, String filetype);
+	sox_format_t sox_open_mem_read(Pointer buffer, size_t buffer_size, sox_signalinfo_t signal, sox_encodinginfo_t encoding, String filetype);
 	/**
 	 * Client API:<br>
 	 * Returns true if the format handler for the specified file type supports the specified encoding.<br>
@@ -968,7 +957,7 @@ public interface SoxLibrary extends Library {
 	 * @param filetype1 < Receives the filetype that was detected. Pass NULL if not needed.<br>
 	 * <i>native declaration : sox.h:1896</i>
 	 */
-	sox_format_handler_t sox_write_handler(String path, String filetype, String filetype1[]);
+	sox_format_handler_t sox_write_handler(String path, String filetype, String[] filetype1);
 	/**
 	 * Client API:<br>
 	 * Opens an encoding session for a file. Returned handle must be closed with sox_close().<br>
@@ -1009,10 +998,10 @@ public interface SoxLibrary extends Library {
 	 * @param filetype < Previously-determined file type, or NULL to auto-detect.<br>
 	 * @param oob < Out-of-band data to add to file, or NULL if none.<br>
 	 * <i>native declaration : sox.h:1927</i><br>
-	 * @deprecated use the safer methods {@link #sox_open_mem_write(com.sun.jna.Pointer, com.ochafik.lang.jnaerator.runtime.NativeSize, com.anthemengineering.sox.jna.sox_signalinfo_t, com.anthemengineering.sox.jna.sox_encodinginfo_t, java.lang.String, com.anthemengineering.sox.jna.sox_oob_t)} and {@link #sox_open_mem_write(com.sun.jna.Pointer, com.ochafik.lang.jnaerator.runtime.NativeSize, com.anthemengineering.sox.jna.sox_signalinfo_t, com.anthemengineering.sox.jna.sox_encodinginfo_t, com.sun.jna.Pointer, com.anthemengineering.sox.jna.sox_oob_t)} instead
+	 * @deprecated use the safer methods {@link #sox_open_mem_write(com.sun.jna.Pointer, size_t, com.anthemengineering.sox.jna.sox_signalinfo_t, com.anthemengineering.sox.jna.sox_encodinginfo_t, java.lang.String, com.anthemengineering.sox.jna.sox_oob_t)} and {@link #sox_open_mem_write(com.sun.jna.Pointer, size_t, com.anthemengineering.sox.jna.sox_signalinfo_t, com.anthemengineering.sox.jna.sox_encodinginfo_t, com.sun.jna.Pointer, com.anthemengineering.sox.jna.sox_oob_t)} instead
 	 */
 	@Deprecated 
-	sox_format_t sox_open_mem_write(Pointer buffer, NativeSize buffer_size, sox_signalinfo_t signal, sox_encodinginfo_t encoding, Pointer filetype, sox_oob_t oob);
+	sox_format_t sox_open_mem_write(Pointer buffer, size_t buffer_size, sox_signalinfo_t signal, sox_encodinginfo_t encoding, Pointer filetype, sox_oob_t oob);
 	/**
 	 * Client API:<br>
 	 * Opens an encoding session for a memory buffer. Returned handle must be closed with sox_close().<br>
@@ -1026,7 +1015,7 @@ public interface SoxLibrary extends Library {
 	 * @param oob < Out-of-band data to add to file, or NULL if none.<br>
 	 * <i>native declaration : sox.h:1927</i>
 	 */
-	sox_format_t sox_open_mem_write(Pointer buffer, NativeSize buffer_size, sox_signalinfo_t signal, sox_encodinginfo_t encoding, String filetype, sox_oob_t oob);
+	sox_format_t sox_open_mem_write(Pointer buffer, size_t buffer_size, sox_signalinfo_t signal, sox_encodinginfo_t encoding, String filetype, sox_oob_t oob);
 	/**
 	 * Client API:<br>
 	 * Opens an encoding session for a memstream buffer. Returned handle must be closed with sox_close().<br>
@@ -1039,10 +1028,10 @@ public interface SoxLibrary extends Library {
 	 * @param filetype < Previously-determined file type, or NULL to auto-detect.<br>
 	 * @param oob < Out-of-band data to add to file, or NULL if none.<br>
 	 * <i>native declaration : sox.h:1944</i><br>
-	 * @deprecated use the safer methods {@link #sox_open_memstream_write(com.sun.jna.ptr.PointerByReference, com.ochafik.lang.jnaerator.runtime.NativeSizeByReference, com.anthemengineering.sox.jna.sox_signalinfo_t, com.anthemengineering.sox.jna.sox_encodinginfo_t, java.lang.String, com.anthemengineering.sox.jna.sox_oob_t)} and {@link #sox_open_memstream_write(com.sun.jna.ptr.PointerByReference, com.ochafik.lang.jnaerator.runtime.NativeSizeByReference, com.anthemengineering.sox.jna.sox_signalinfo_t, com.anthemengineering.sox.jna.sox_encodinginfo_t, com.sun.jna.Pointer, com.anthemengineering.sox.jna.sox_oob_t)} instead
+	 * @deprecated use the safer methods {@link #sox_open_memstream_write(com.sun.jna.ptr.PointerByReference, size_t.ByReference, com.anthemengineering.sox.jna.sox_signalinfo_t, com.anthemengineering.sox.jna.sox_encodinginfo_t, java.lang.String, com.anthemengineering.sox.jna.sox_oob_t)} and {@link #sox_open_memstream_write(com.sun.jna.ptr.PointerByReference, size_t.ByReference, com.anthemengineering.sox.jna.sox_signalinfo_t, com.anthemengineering.sox.jna.sox_encodinginfo_t, com.sun.jna.Pointer, com.anthemengineering.sox.jna.sox_oob_t)} instead
 	 */
 	@Deprecated 
-	sox_format_t sox_open_memstream_write(PointerByReference buffer_ptr, NativeSizeByReference buffer_size_ptr, sox_signalinfo_t signal, sox_encodinginfo_t encoding, Pointer filetype, sox_oob_t oob);
+	sox_format_t sox_open_memstream_write(PointerByReference buffer_ptr, size_t.ByReference buffer_size_ptr, sox_signalinfo_t signal, sox_encodinginfo_t encoding, Pointer filetype, sox_oob_t oob);
 	/**
 	 * Client API:<br>
 	 * Opens an encoding session for a memstream buffer. Returned handle must be closed with sox_close().<br>
@@ -1056,7 +1045,7 @@ public interface SoxLibrary extends Library {
 	 * @param oob < Out-of-band data to add to file, or NULL if none.<br>
 	 * <i>native declaration : sox.h:1944</i>
 	 */
-	sox_format_t sox_open_memstream_write(PointerByReference buffer_ptr, NativeSizeByReference buffer_size_ptr, sox_signalinfo_t signal, sox_encodinginfo_t encoding, String filetype, sox_oob_t oob);
+	sox_format_t sox_open_memstream_write(PointerByReference buffer_ptr, size_t.ByReference buffer_size_ptr, sox_signalinfo_t signal, sox_encodinginfo_t encoding, String filetype, sox_oob_t oob);
 	/**
 	 * Client API:<br>
 	 * Reads samples from a decoding session into a sample buffer.<br>
@@ -1066,10 +1055,10 @@ public interface SoxLibrary extends Library {
 	 * @param buf < Buffer from which to read samples.<br>
 	 * @param len < Number of samples available in buf.<br>
 	 * <i>native declaration : sox.h:1960</i><br>
-	 * @deprecated use the safer methods {@link #sox_read(com.anthemengineering.sox.jna.sox_format_t, java.nio.IntBuffer, com.ochafik.lang.jnaerator.runtime.NativeSize)} and {@link #sox_read(com.anthemengineering.sox.jna.sox_format_t, com.sun.jna.ptr.IntByReference, com.ochafik.lang.jnaerator.runtime.NativeSize)} instead
+	 * @deprecated use the safer methods {@link #sox_read(com.anthemengineering.sox.jna.sox_format_t, java.nio.IntBuffer, size_t)} and {@link #sox_read(com.anthemengineering.sox.jna.sox_format_t, com.sun.jna.ptr.IntByReference, size_t)} instead
 	 */
 	@Deprecated 
-	NativeSize sox_read(sox_format_t ft, IntByReference buf, NativeSize len);
+	size_t sox_read(sox_format_t ft, IntByReference buf, size_t len);
 	/**
 	 * Client API:<br>
 	 * Reads samples from a decoding session into a sample buffer.<br>
@@ -1080,7 +1069,7 @@ public interface SoxLibrary extends Library {
 	 * @param len < Number of samples available in buf.<br>
 	 * <i>native declaration : sox.h:1960</i>
 	 */
-	NativeSize sox_read(sox_format_t ft, IntBuffer buf, NativeSize len);
+	size_t sox_read(sox_format_t ft, IntBuffer buf, size_t len);
 	/**
 	 * Client API:<br>
 	 * Writes samples to an encoding session from a sample buffer.<br>
@@ -1090,10 +1079,10 @@ public interface SoxLibrary extends Library {
 	 * @param buf < Buffer from which to read samples.<br>
 	 * @param len < Number of samples available in buf.<br>
 	 * <i>native declaration : sox.h:1973</i><br>
-	 * @deprecated use the safer methods {@link #sox_write(com.anthemengineering.sox.jna.sox_format_t, java.nio.IntBuffer, com.ochafik.lang.jnaerator.runtime.NativeSize)} and {@link #sox_write(com.anthemengineering.sox.jna.sox_format_t, com.sun.jna.ptr.IntByReference, com.ochafik.lang.jnaerator.runtime.NativeSize)} instead
+	 * @deprecated use the safer methods {@link #sox_write(com.anthemengineering.sox.jna.sox_format_t, java.nio.IntBuffer, size_t)} and {@link #sox_write(com.anthemengineering.sox.jna.sox_format_t, com.sun.jna.ptr.IntByReference, size_t)} instead
 	 */
 	@Deprecated 
-	NativeSize sox_write(sox_format_t ft, IntByReference buf, NativeSize len);
+	size_t sox_write(sox_format_t ft, IntByReference buf, size_t len);
 	/**
 	 * Client API:<br>
 	 * Writes samples to an encoding session from a sample buffer.<br>
@@ -1104,7 +1093,7 @@ public interface SoxLibrary extends Library {
 	 * @param len < Number of samples available in buf.<br>
 	 * <i>native declaration : sox.h:1973</i>
 	 */
-	NativeSize sox_write(sox_format_t ft, IntBuffer buf, NativeSize len);
+	size_t sox_write(sox_format_t ft, IntBuffer buf, size_t len);
 	/**
 	 * Client API:<br>
 	 * Closes an encoding or decoding session.<br>
@@ -1207,7 +1196,7 @@ public interface SoxLibrary extends Library {
 	 * @param argv < Array of command-line options.<br>
 	 * <i>native declaration : sox.h:2063</i>
 	 */
-	int sox_effect_options(sox_effect_t effp, int argc, String argv[]);
+	int sox_effect_options(sox_effect_t effp, int argc, String[] argv);
 	/**
 	 * Client API:<br>
 	 * Returns an array containing the known effect handlers.<br>
@@ -1401,10 +1390,10 @@ public interface SoxLibrary extends Library {
 	 * @param base_buffer_len < Size of base_buffer, in bytes.<br>
 	 * @param filename < Filename from which to extract basename.<br>
 	 * <i>native declaration : sox.h:2279</i><br>
-	 * @deprecated use the safer methods {@link #sox_basename(java.nio.ByteBuffer, com.ochafik.lang.jnaerator.runtime.NativeSize, java.lang.String)} and {@link #sox_basename(com.sun.jna.Pointer, com.ochafik.lang.jnaerator.runtime.NativeSize, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #sox_basename(java.nio.ByteBuffer, size_t, java.lang.String)} and {@link #sox_basename(com.sun.jna.Pointer, size_t, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	NativeSize sox_basename(Pointer base_buffer, NativeSize base_buffer_len, Pointer filename);
+	size_t sox_basename(Pointer base_buffer, size_t base_buffer_len, Pointer filename);
 	/**
 	 * Client API:<br>
 	 * Gets the basename of the specified file; for example, the basename of<br>
@@ -1417,14 +1406,13 @@ public interface SoxLibrary extends Library {
 	 * @param filename < Filename from which to extract basename.<br>
 	 * <i>native declaration : sox.h:2279</i>
 	 */
-	NativeSize sox_basename(ByteBuffer base_buffer, NativeSize base_buffer_len, String filename);
+	size_t sox_basename(ByteBuffer base_buffer, size_t base_buffer_len, String filename);
 	/**
 	 * Plugins API:<br>
 	 * Print a fatal error in libSoX.<br>
 	 * Original signature : <code>void lsx_fail_impl(const char*, null)</code><br>
 	 * @param fmt < printf-style format string.<br>
 	 * <i>native declaration : sox.h:2298</i><br>
-	 * @deprecated use the safer methods {@link #lsx_fail_impl(java.lang.String, java.lang.Object)} and {@link #lsx_fail_impl(com.sun.jna.Pointer, java.lang.Object)} instead
 	 */
 	@Deprecated 
 	void lsx_fail_impl(Pointer fmt, Object... varArgs1);
@@ -1442,7 +1430,6 @@ public interface SoxLibrary extends Library {
 	 * Original signature : <code>void lsx_warn_impl(const char*, null)</code><br>
 	 * @param fmt < printf-style format string.<br>
 	 * <i>native declaration : sox.h:2309</i><br>
-	 * @deprecated use the safer methods {@link #lsx_warn_impl(java.lang.String, java.lang.Object)} and {@link #lsx_warn_impl(com.sun.jna.Pointer, java.lang.Object)} instead
 	 */
 	@Deprecated 
 	void lsx_warn_impl(Pointer fmt, Object... varArgs1);
@@ -1460,7 +1447,6 @@ public interface SoxLibrary extends Library {
 	 * Original signature : <code>void lsx_report_impl(const char*, null)</code><br>
 	 * @param fmt < printf-style format string.<br>
 	 * <i>native declaration : sox.h:2320</i><br>
-	 * @deprecated use the safer methods {@link #lsx_report_impl(java.lang.String, java.lang.Object)} and {@link #lsx_report_impl(com.sun.jna.Pointer, java.lang.Object)} instead
 	 */
 	@Deprecated 
 	void lsx_report_impl(Pointer fmt, Object... varArgs1);
@@ -1478,7 +1464,6 @@ public interface SoxLibrary extends Library {
 	 * Original signature : <code>void lsx_debug_impl(const char*, null)</code><br>
 	 * @param fmt < printf-style format string.<br>
 	 * <i>native declaration : sox.h:2331</i><br>
-	 * @deprecated use the safer methods {@link #lsx_debug_impl(java.lang.String, java.lang.Object)} and {@link #lsx_debug_impl(com.sun.jna.Pointer, java.lang.Object)} instead
 	 */
 	@Deprecated 
 	void lsx_debug_impl(Pointer fmt, Object... varArgs1);
@@ -1628,7 +1613,7 @@ public interface SoxLibrary extends Library {
 	 * @param newsize < New size for buffer, or 0 to free the buffer.<br>
 	 * <i>native declaration : sox.h:2495</i>
 	 */
-	Pointer lsx_realloc(Pointer ptr, NativeSize newsize);
+	Pointer lsx_realloc(Pointer ptr, size_t newsize);
 	/**
 	 * Plugins API:<br>
 	 * Like strcmp, except that the characters are compared without regard to case.<br>
@@ -1660,10 +1645,10 @@ public interface SoxLibrary extends Library {
 	 * @param s2 < Second string.<br>
 	 * @param n < Maximum number of characters to examine.<br>
 	 * <i>native declaration : sox.h:2522</i><br>
-	 * @deprecated use the safer methods {@link #lsx_strncasecmp(java.lang.String, java.lang.String, com.ochafik.lang.jnaerator.runtime.NativeSize)} and {@link #lsx_strncasecmp(com.sun.jna.Pointer, com.sun.jna.Pointer, com.ochafik.lang.jnaerator.runtime.NativeSize)} instead
+	 * @deprecated use the safer methods {@link #lsx_strncasecmp(java.lang.String, java.lang.String, size_t)} and {@link #lsx_strncasecmp(com.sun.jna.Pointer, com.sun.jna.Pointer, size_t)} instead
 	 */
 	@Deprecated 
-	int lsx_strncasecmp(Pointer s1, Pointer s2, NativeSize n);
+	int lsx_strncasecmp(Pointer s1, Pointer s2, size_t n);
 	/**
 	 * Plugins API:<br>
 	 * Like strncmp, except that the characters are compared without regard to case.<br>
@@ -1674,7 +1659,7 @@ public interface SoxLibrary extends Library {
 	 * @param n < Maximum number of characters to examine.<br>
 	 * <i>native declaration : sox.h:2522</i>
 	 */
-	int lsx_strncasecmp(String s1, String s2, NativeSize n);
+	int lsx_strncasecmp(String s1, String s2, size_t n);
 	/**
 	 * Plugins API:<br>
 	 * Initializes an lsx_getopt_t structure for use with lsx_getopt.<br>
@@ -1704,7 +1689,7 @@ public interface SoxLibrary extends Library {
 	 * @param state < State object to be initialized<br>
 	 * <i>native declaration : sox.h:2582</i>
 	 */
-	void lsx_getopt_init(int argc, String argv[], String shortopts, lsx_option_t longopts, int flags, int first, lsx_getopt_t state);
+	void lsx_getopt_init(int argc, String[] argv, String shortopts, lsx_option_t longopts, int flags, int first, lsx_getopt_t state);
 	/**
 	 * Plugins API:<br>
 	 * Gets the next option. Options are parameters that start with "-" or "--".<br>
