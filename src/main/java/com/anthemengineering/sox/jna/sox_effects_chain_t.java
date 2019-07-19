@@ -3,6 +3,8 @@ package com.anthemengineering.sox.jna;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.IntByReference;
+import com.sun.jna.ptr.PointerByReference;
+
 import java.util.Arrays;
 import java.util.List;
 /**
@@ -17,7 +19,7 @@ public class sox_effects_chain_t extends Structure {
 	 * < Table of effects to be applied to a stream<br>
 	 * C type : sox_effect_t**
 	 */
-	public com.anthemengineering.sox.jna.sox_effect_t.ByReference[] effects;
+	public PointerByReference effects;
 	/** < Number of effects to be applied */
 	public size_t length;
 	/**
@@ -62,10 +64,8 @@ public class sox_effects_chain_t extends Structure {
 	 * @param il_buf < Channel interleave buffer<br>
 	 * C type : sox_sample_t*
 	 */
-	public sox_effects_chain_t(com.anthemengineering.sox.jna.sox_effect_t.ByReference effects[], size_t length, sox_effects_globals_t global_info, com.anthemengineering.sox.jna.sox_encodinginfo_t.ByReference in_enc, com.anthemengineering.sox.jna.sox_encodinginfo_t.ByReference out_enc, size_t table_size, IntByReference il_buf) {
+	public sox_effects_chain_t(PointerByReference effects, size_t length, sox_effects_globals_t global_info, com.anthemengineering.sox.jna.sox_encodinginfo_t.ByReference in_enc, com.anthemengineering.sox.jna.sox_encodinginfo_t.ByReference out_enc, size_t table_size, IntByReference il_buf) {
 		super();
-		if ((effects.length != this.effects.length)) 
-			throw new IllegalArgumentException("Wrong array size !");
 		this.effects = effects;
 		this.length = length;
 		this.global_info = global_info;
