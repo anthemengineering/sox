@@ -72,7 +72,7 @@ public class sox_effect_t extends Structure {
 	public sox_effect_t() {
 		super();
 	}
-	protected List<? > getFieldOrder() {
+	protected List<String> getFieldOrder() {
 		return Arrays.asList("global_info", "in_signal", "out_signal", "in_encoding", "out_encoding", "handler", "clips", "flows", "flow", "priv", "obuf", "obeg", "oend", "imin");
 	}
 	public sox_effect_t(Pointer peer) {

@@ -43,7 +43,7 @@ public class sox_encodinginfo_t extends Structure {
 	public sox_encodinginfo_t() {
 		super();
 	}
-	protected List<? > getFieldOrder() {
+	protected List<String> getFieldOrder() {
 		return Arrays.asList("encoding", "bits_per_sample", "compression", "reverse_bytes", "reverse_nibbles", "reverse_bits", "opposite_endian");
 	}
 	/**

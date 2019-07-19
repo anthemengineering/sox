@@ -20,7 +20,7 @@ public class lsx_enum_item extends Structure {
 	public lsx_enum_item() {
 		super();
 	}
-	protected List<? > getFieldOrder() {
+	protected List<String> getFieldOrder() {
 		return Arrays.asList("text", "value");
 	}
 	/**

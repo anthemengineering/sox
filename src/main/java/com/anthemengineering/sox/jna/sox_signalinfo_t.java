@@ -33,7 +33,7 @@ public class sox_signalinfo_t extends Structure {
 	public sox_signalinfo_t() {
 		super();
 	}
-	protected List<? > getFieldOrder() {
+	protected List<String> getFieldOrder() {
 		return Arrays.asList("rate", "channels", "precision", "length", "mult");
 	}
 	/**

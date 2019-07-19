@@ -44,7 +44,7 @@ public class sox_effects_chain_t extends Structure {
 	public sox_effects_chain_t() {
 		super();
 	}
-	protected List<? > getFieldOrder() {
+	protected List<String> getFieldOrder() {
 		return Arrays.asList("effects", "length", "global_info", "in_enc", "out_enc", "table_size", "il_buf");
 	}
 	/**

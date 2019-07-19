@@ -57,7 +57,7 @@ public class sox_version_info_t extends Structure {
 	public sox_version_info_t() {
 		super();
 	}
-	protected List<? > getFieldOrder() {
+	protected List<String> getFieldOrder() {
 		return Arrays.asList("size", "flags", "version_code", "version", "version_extra", "time", "distro", "compiler", "arch");
 	}
 	/**

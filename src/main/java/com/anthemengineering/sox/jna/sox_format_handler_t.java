@@ -80,7 +80,7 @@ public class sox_format_handler_t extends Structure {
 	public sox_format_handler_t() {
 		super();
 	}
-	protected List<? > getFieldOrder() {
+	protected List<String> getFieldOrder() {
 		return Arrays.asList("sox_lib_version_code", "description", "names", "flags", "startread", "read", "stopread", "startwrite", "write", "stopwrite", "seek", "write_formats", "write_rates", "priv_size");
 	}
 	public sox_format_handler_t(Pointer peer) {

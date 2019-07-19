@@ -90,7 +90,7 @@ public class sox_format_t extends Structure {
 	public sox_format_t() {
 		super();
 	}
-	protected List<? > getFieldOrder() {
+	protected List<String> getFieldOrder() {
 		return Arrays.asList("filename", "signal", "encoding", "filetype", "oob", "seekable", "mode", "olength", "clips", "sox_errno", "sox_errstr", "fp", "io_type", "tell_off", "data_start", "handler", "priv");
 	}
 	public sox_format_t(Pointer peer) {

@@ -29,7 +29,7 @@ public class sox_encodings_info_t extends Structure {
 	public sox_encodings_info_t() {
 		super();
 	}
-	protected List<? > getFieldOrder() {
+	protected List<String> getFieldOrder() {
 		return Arrays.asList("flags", "name", "desc");
 	}
 	/**

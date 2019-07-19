@@ -23,7 +23,7 @@ public class sox_instrinfo_t extends Structure {
 	public sox_instrinfo_t() {
 		super();
 	}
-	protected List<? > getFieldOrder() {
+	protected List<String> getFieldOrder() {
 		return Arrays.asList("MIDInote", "MIDIlow", "MIDIhi", "loopmode", "nloops");
 	}
 	/**

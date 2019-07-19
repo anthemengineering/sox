@@ -25,7 +25,7 @@ public class sox_fileinfo_t extends Structure {
 	public sox_fileinfo_t() {
 		super();
 	}
-	protected List<? > getFieldOrder() {
+	protected List<String> getFieldOrder() {
 		return Arrays.asList("buf", "size", "count", "pos");
 	}
 	/**

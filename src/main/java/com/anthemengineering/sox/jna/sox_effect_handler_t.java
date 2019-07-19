@@ -66,7 +66,7 @@ public class sox_effect_handler_t extends Structure {
 	public sox_effect_handler_t() {
 		super();
 	}
-	protected List<? > getFieldOrder() {
+	protected List<String> getFieldOrder() {
 		return Arrays.asList("name", "usage", "flags", "getopts", "start", "flow", "drain", "stop", "kill", "priv_size");
 	}
 	public sox_effect_handler_t(Pointer peer) {

@@ -71,7 +71,7 @@ public class sox_globals_t extends Structure {
 	public sox_globals_t() {
 		super();
 	}
-	protected List<? > getFieldOrder() {
+	protected List<String> getFieldOrder() {
 		return Arrays.asList("verbosity", "output_message_handler", "repeatable", "bufsiz", "input_bufsiz", "ranqd1", "stdin_in_use_by", "stdout_in_use_by", "subsystem", "tmp_path", "use_magic", "use_threads", "log2_dft_min_size");
 	}
 	public sox_globals_t(Pointer peer) {

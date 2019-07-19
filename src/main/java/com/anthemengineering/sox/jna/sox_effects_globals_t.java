@@ -24,7 +24,7 @@ public class sox_effects_globals_t extends Structure {
 	public sox_effects_globals_t() {
 		super();
 	}
-	protected List<? > getFieldOrder() {
+	protected List<String> getFieldOrder() {
 		return Arrays.asList("plot", "global_info");
 	}
 	/**

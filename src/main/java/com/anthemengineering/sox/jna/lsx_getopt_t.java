@@ -53,7 +53,7 @@ public class lsx_getopt_t extends Structure {
 	public lsx_getopt_t() {
 		super();
 	}
-	protected List<? > getFieldOrder() {
+	protected List<String> getFieldOrder() {
 		return Arrays.asList("argc", "argv", "shortopts", "longopts", "flags", "curpos", "ind", "opt", "arg", "lngind");
 	}
 	public lsx_getopt_t(Pointer peer) {

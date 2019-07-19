@@ -32,7 +32,7 @@ public class lsx_option_t extends Structure {
 	public lsx_option_t() {
 		super();
 	}
-	protected List<? > getFieldOrder() {
+	protected List<String> getFieldOrder() {
 		return Arrays.asList("name", "has_arg", "flag", "val");
 	}
 	/**
