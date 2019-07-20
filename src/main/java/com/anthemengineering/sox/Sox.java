@@ -1,6 +1,13 @@
 package com.anthemengineering.sox;
 
-import com.anthemengineering.sox.jna.*;
+import com.anthemengineering.sox.jna.SoxLibrary;
+import com.anthemengineering.sox.jna.sox_effect_handler_t;
+import com.anthemengineering.sox.jna.sox_effect_t;
+import com.anthemengineering.sox.jna.sox_effects_chain_t;
+import com.anthemengineering.sox.jna.sox_encodinginfo_t;
+import com.anthemengineering.sox.jna.sox_format_t;
+import com.anthemengineering.sox.jna.sox_oob_t;
+import com.anthemengineering.sox.jna.sox_signalinfo_t;
 import com.sun.jna.Pointer;
 
 import static com.anthemengineering.sox.jna.SoxLibrary.sox_error_t.SOX_SUCCESS;
