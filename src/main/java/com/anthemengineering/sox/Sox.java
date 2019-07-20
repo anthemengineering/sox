@@ -94,7 +94,7 @@ public final class Sox {
     }
 
     public sox_effect_t createEffect(String name) {
-        return createEffect(name, null);
+        return createEffect(name, new String[]{});
     }
 
     public sox_effect_t createInputEffect(sox_format_t input) {
