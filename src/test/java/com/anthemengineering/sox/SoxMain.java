@@ -40,6 +40,14 @@ public class SoxMain {
         SoxLibrary.INSTANCE.sox_add_effect(chain, inputEffect, source.signal, source.signal);
         System.out.println("Added input effect to chain");
 
+        sox_effect_handler_t flangerEffectHandler = SoxLibrary.INSTANCE.sox_find_effect("flanger");
+        sox_effect_t flangerEffect = SoxLibrary.INSTANCE.sox_create_effect(flangerEffectHandler);
+        assert SoxLibrary.INSTANCE.sox_effect_options(flangerEffect, 0, (String[]) null) == SOX_SUCCESS;
+        System.out.println("Created flanger effect: " + flangerEffect);
+
+        SoxLibrary.INSTANCE.sox_add_effect(chain, flangerEffect, source.signal, source.signal);
+        System.out.println("Added flanger effect to chain");
+
         sox_effect_handler_t outputEffectHandler = SoxLibrary.INSTANCE.sox_find_effect("output");
         sox_effect_t outputEffect = SoxLibrary.INSTANCE.sox_create_effect(outputEffectHandler);
         assert SoxLibrary.INSTANCE.sox_effect_options(outputEffect, 1, new Pointer[] { destination.getPointer() }) == SOX_SUCCESS;
