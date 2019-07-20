@@ -26,9 +26,9 @@ public class SoxMain {
         sox.addEffect(chain, inputEffect, source.signal, source.signal);
         System.out.println("Added input effect to chain");
 
-        sox_effect_t volEffect = sox.createEffect("vol", "3dB");
-        sox.addEffect(chain, volEffect, source.signal, source.signal);
-        System.out.println("Added vol effect to chain");
+        sox_effect_t highpassEffect = sox.createEffect("highpass", "1000");
+        sox.addEffect(chain, highpassEffect, source.signal, source.signal);
+        System.out.println("Added highpass effect to chain");
 
         sox_effect_t flangerEffect = sox.createEffect("flanger");
         sox.addEffect(chain, flangerEffect, source.signal, source.signal);
@@ -40,5 +40,10 @@ public class SoxMain {
 
         sox.flowEffects(chain);
         System.out.println("Flowed chain");
+
+        sox.deleteEffectsChain(chain);
+        sox.close(source);
+        sox.close(destination);
+        System.out.println("Cleaned up");
     }
 }

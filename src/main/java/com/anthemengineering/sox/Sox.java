@@ -46,6 +46,12 @@ public final class Sox {
         return openWrite(path, signal, null, null, null, overwrite);
     }
 
+    public void close(sox_format_t format) {
+        if (SoxLibrary.INSTANCE.sox_close(format) != SOX_SUCCESS) {
+            throw new SoxException("Could not close " + format);
+        }
+    }
+
     public sox_effects_chain_t createEffectsChain(sox_encodinginfo_t inEncoding, sox_encodinginfo_t outEncoding) {
         sox_effects_chain_t chain = SoxLibrary.INSTANCE.sox_create_effects_chain(inEncoding, outEncoding);
 
@@ -54,6 +60,10 @@ public final class Sox {
         }
 
         return chain;
+    }
+
+    public void deleteEffectsChain(sox_effects_chain_t chain) {
+        SoxLibrary.INSTANCE.sox_delete_effects_chain(chain);
     }
 
     public sox_effect_t createEffect(String name, String... options) {
