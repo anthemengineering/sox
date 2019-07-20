@@ -21,8 +21,14 @@ This should then generate the jar: `target/sox-$VERSION.jar`.
 
 ## Small examples
 
-See [SoxMain.java](src/test/java/com/anthemengineering/sox/SoxMain.java) and [SoxEffectsChainMain.java](src/test/java/com/anthemengineering/sox/SoxEffectsChainMain.java)
-
+- [SoxMain.java](src/test/java/com/anthemengineering/sox/SoxMain.java) 
+    ```
+    $ ./mvnw exec:java -Dexec.mainClass=com.anthemengineering.sox.SoxMain -Dexec.classpathScope=test
+    ```
+- [SoxEffectsChainMain.java](src/test/java/com/anthemengineering/sox/SoxEffectsChainMain.java)
+    ```
+    $ ./mvnw exec:java -Dexec.mainClass=com.anthemengineering.sox.SoxEffectsChainMain -Dexec.classpathScope=test
+    ```
 
 ## Useful Links
 
