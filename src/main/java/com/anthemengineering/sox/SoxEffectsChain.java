@@ -31,8 +31,9 @@ public final class SoxEffectsChain implements Closeable {
         return new Builder();
     }
 
-    public void flowEffects() {
+    public SoxEffectsChain flowEffects() {
         sox.flowEffects(chain);
+        return this;
     }
 
     @Override
