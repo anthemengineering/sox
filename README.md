@@ -4,6 +4,15 @@ This project is a Java JNA binding to the [Sound eXchange(SoX)](http://sox.sourc
 ## Dependencies
 Install sox-14.4.2 onto your library path.
 
+### Ubuntu
+```
+sudo apt install libsox-dev
+```
+
+You may need to also run `sudo apt install build-essential`
+
+This installs `sox.h` to your include path at `/usr/include/sox.h`.  Use that as the path to the `sox.h` as the jnaerator argument.
+
 ## Generating JNA Bindings
 
 ```bash
