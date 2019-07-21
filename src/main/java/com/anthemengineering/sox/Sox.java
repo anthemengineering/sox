@@ -1,25 +1,20 @@
 package com.anthemengineering.sox;
 
-import com.anthemengineering.sox.jna.SoxLibrary;
-import com.anthemengineering.sox.jna.sox_effect_handler_t;
-import com.anthemengineering.sox.jna.sox_effect_t;
-import com.anthemengineering.sox.jna.sox_effects_chain_t;
-import com.anthemengineering.sox.jna.sox_encodinginfo_t;
-import com.anthemengineering.sox.jna.sox_format_t;
-import com.anthemengineering.sox.jna.sox_oob_t;
-import com.anthemengineering.sox.jna.sox_signalinfo_t;
+import com.anthemengineering.sox.jna.*;
 import com.sun.jna.Pointer;
 
 import static com.anthemengineering.sox.jna.SoxLibrary.sox_error_t.SOX_SUCCESS;
 
 public final class Sox {
-    public Sox() {
-        if (SoxLibrary.INSTANCE.sox_init() != SOX_SUCCESS) {
-            throw new SoxException("Could not initialize Sox");
-        }
+    static {
+        SoxLibManagement.initialize(); // ensures initialized
     }
 
-    public sox_format_t openRead(String path, sox_signalinfo_t signal, sox_encodinginfo_t encoding, String filetype) {
+    private Sox() {
+
+    }
+
+    public static sox_format_t openRead(String path, sox_signalinfo_t signal, sox_encodinginfo_t encoding, String filetype) {
         sox_format_t f = SoxLibrary.INSTANCE.sox_open_read(path, signal, encoding, filetype);
 
         if (f == null) {
@@ -29,11 +24,11 @@ public final class Sox {
         return f;
     }
 
-    public sox_format_t openRead(String path) {
+    public static sox_format_t openRead(String path) {
         return openRead(path, null, null, null);
     }
 
-    public sox_format_t openWrite(String path, sox_signalinfo_t signal, sox_encodinginfo_t encoding, String filetype, sox_oob_t oob, boolean overwrite) {
+    public static sox_format_t openWrite(String path, sox_signalinfo_t signal, sox_encodinginfo_t encoding, String filetype, sox_oob_t oob, boolean overwrite) {
         final boolean o = overwrite;
         sox_format_t f = SoxLibrary.INSTANCE.sox_open_write(path, signal, encoding, filetype, oob, new SoxLibrary.sox_open_write_overwrite_permitted_callback() {
             @Override
@@ -49,17 +44,45 @@ public final class Sox {
         return f;
     }
 
-    public sox_format_t openWrite(String path, sox_signalinfo_t signal, boolean overwrite) {
+    public static sox_format_t openWrite(String path, sox_signalinfo_t signal, boolean overwrite) {
         return openWrite(path, signal, null, null, null, overwrite);
     }
 
-    public void close(sox_format_t format) {
+    public static sox_format_t openRead(Pointer source, size_t sourceBufferSize, sox_signalinfo_t signal, sox_encodinginfo_t encoding, String filetype) {
+        sox_format_t f = SoxLibrary.INSTANCE.sox_open_mem_read(source, sourceBufferSize, signal, encoding, filetype);
+
+        if (f == null) {
+            throw new SoxException("Could not open source memory for read");
+        }
+
+        return f;
+    }
+
+    public static sox_format_t openRead(Pointer source, size_t sourceBufferSize) {
+        return openRead(source, sourceBufferSize, null, null, null);
+    }
+
+    public static sox_format_t openWrite(Pointer dest, size_t destBufferSize, sox_signalinfo_t signal, sox_encodinginfo_t encoding, String filetype, sox_oob_t oob) {
+        sox_format_t f = SoxLibrary.INSTANCE.sox_open_mem_write(dest, destBufferSize, signal, encoding, filetype, oob);
+
+        if (f == null) {
+            throw new SoxException("Could not open source memory for write");
+        }
+
+        return f;
+    }
+
+    public static sox_format_t openWrite(Pointer dest, size_t destBufferSize, sox_signalinfo_t signal) {
+        return openWrite(dest, destBufferSize, signal, null, null, null);
+    }
+
+    public static void close(sox_format_t format) {
         if (SoxLibrary.INSTANCE.sox_close(format) != SOX_SUCCESS) {
             throw new SoxException("Could not close " + format);
         }
     }
 
-    public sox_effects_chain_t createEffectsChain(sox_encodinginfo_t inEncoding, sox_encodinginfo_t outEncoding) {
+    public static sox_effects_chain_t createEffectsChain(sox_encodinginfo_t inEncoding, sox_encodinginfo_t outEncoding) {
         sox_effects_chain_t chain = SoxLibrary.INSTANCE.sox_create_effects_chain(inEncoding, outEncoding);
 
         if (chain == null) {
@@ -69,11 +92,11 @@ public final class Sox {
         return chain;
     }
 
-    public void deleteEffectsChain(sox_effects_chain_t chain) {
+    public static void deleteEffectsChain(sox_effects_chain_t chain) {
         SoxLibrary.INSTANCE.sox_delete_effects_chain(chain);
     }
 
-    public sox_effect_t createEffect(String name, String... options) {
+    public static sox_effect_t createEffect(String name, String... options) {
         sox_effect_handler_t handler = SoxLibrary.INSTANCE.sox_find_effect(name);
 
         if (handler == null) {
@@ -93,11 +116,11 @@ public final class Sox {
         return effect;
     }
 
-    public sox_effect_t createEffect(String name) {
+    public static sox_effect_t createEffect(String name) {
         return createEffect(name, new String[]{});
     }
 
-    public sox_effect_t createInputEffect(sox_format_t input) {
+    public static sox_effect_t createInputEffect(sox_format_t input) {
         sox_effect_handler_t handler = SoxLibrary.INSTANCE.sox_find_effect("input");
 
         if (handler == null) {
@@ -113,7 +136,7 @@ public final class Sox {
         return inputEffect;
     }
 
-    public sox_effect_t createOutputEffect(sox_format_t output) {
+    public static sox_effect_t createOutputEffect(sox_format_t output) {
         sox_effect_handler_t handler = SoxLibrary.INSTANCE.sox_find_effect("output");
 
         if (handler == null) {
@@ -129,7 +152,7 @@ public final class Sox {
         return outputEffect;
     }
 
-    public sox_effects_chain_t addEffect(sox_effects_chain_t chain, sox_effect_t effp, sox_signalinfo_t in, sox_signalinfo_t out) {
+    public static sox_effects_chain_t addEffect(sox_effects_chain_t chain, sox_effect_t effp, sox_signalinfo_t in, sox_signalinfo_t out) {
         if (SoxLibrary.INSTANCE.sox_add_effect(chain, effp, in, out) != SOX_SUCCESS) {
             throw new SoxException("Could not add effect to chain");
         }
@@ -137,13 +160,13 @@ public final class Sox {
         return chain;
     }
 
-    public void flowEffects(sox_effects_chain_t chain, SoxLibrary.sox_flow_effects_callback callback, Pointer client_data) {
+    public static void flowEffects(sox_effects_chain_t chain, SoxLibrary.sox_flow_effects_callback callback, Pointer client_data) {
         if (SoxLibrary.INSTANCE.sox_flow_effects(chain, null, null) != SOX_SUCCESS) {
             throw new SoxException("Could not flow effects");
         }
     }
 
-    public void flowEffects(sox_effects_chain_t chain) {
+    public static void flowEffects(sox_effects_chain_t chain) {
         flowEffects(chain, null, null);
     }
 }

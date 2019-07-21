@@ -1,33 +1,29 @@
 package com.anthemengineering.sox;
 
 import com.anthemengineering.sox.effects.SoxEffect;
+import com.anthemengineering.sox.format.SoxSink;
+import com.anthemengineering.sox.format.SoxSource;
 import com.anthemengineering.sox.jna.sox_effect_t;
 import com.anthemengineering.sox.jna.sox_effects_chain_t;
 import com.anthemengineering.sox.jna.sox_format_t;
 
 import java.io.Closeable;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.anthemengineering.sox.ValidationUtil.nonNull;
 
 public final class SoxEffectsChain implements Closeable {
-    private final Sox sox;
-
     private final sox_format_t source;
     private final sox_format_t destination;
+
     private final sox_effects_chain_t chain;
 
-    private SoxEffectsChain(Path source, Path destination, boolean overwriteDestination) {
-        sox = new Sox();
+    SoxEffectsChain(SoxSource source, SoxSink sink) {
+        this.source = source.create();
+        this.destination = sink.create(this.source.signal);
 
-        this.source = sox.openRead(source.toAbsolutePath().toString());
-        this.destination = sox.openWrite(destination.toAbsolutePath().toString(), this.source.signal, overwriteDestination);
-
-        this.chain = sox.createEffectsChain(this.source.encoding, this.destination.encoding);
+        this.chain = Sox.createEffectsChain(this.source.encoding, this.destination.encoding);
     }
 
     public static Builder builder() {
@@ -35,37 +31,36 @@ public final class SoxEffectsChain implements Closeable {
     }
 
     public SoxEffectsChain flowEffects() {
-        sox.flowEffects(chain);
+        Sox.flowEffects(chain);
         return this;
     }
 
     @Override
     public void close() {
-        sox.deleteEffectsChain(chain);
-        sox.close(source);
-        sox.close(destination);
+        Sox.deleteEffectsChain(chain);
+        Sox.close(source);
+        Sox.close(destination);
     }
 
     private void addInputEffect() {
-        sox_effect_t inputEffect = sox.createInputEffect(source);
-        sox.addEffect(chain, inputEffect, source.signal, source.signal);
+        sox_effect_t inputEffect = Sox.createInputEffect(source);
+        Sox.addEffect(chain, inputEffect, source.signal, source.signal);
     }
 
     private void addOutputEffect() {
-        sox_effect_t outputEffect = sox.createOutputEffect(destination);
-        sox.addEffect(chain, outputEffect, source.signal, source.signal);
+        sox_effect_t outputEffect = Sox.createOutputEffect(destination);
+        Sox.addEffect(chain, outputEffect, source.signal, source.signal);
     }
 
     private void addEffect(String name, String... options) {
-        sox_effect_t effect = sox.createEffect(name, options);
-        sox.addEffect(chain, effect, source.signal, source.signal);
+        sox_effect_t effect = Sox.createEffect(name, options);
+        Sox.addEffect(chain, effect, source.signal, source.signal);
     }
 
     public static class Builder {
-        private Path source;
-        private Path destination;
-        private boolean overwriteDestination;
-        private List<Effect> effects = new ArrayList<>();
+        private SoxSource source;
+        private SoxSink sink;
+        private final List<Effect> effects = new ArrayList<>();
 
         private Builder() {
             // no op
@@ -85,26 +80,15 @@ public final class SoxEffectsChain implements Closeable {
             }
         }
 
-        public Builder source(Path source) {
+        public Builder source(SoxSource source) {
             this.source = source;
+
             return this;
         }
 
-        public Builder source(String source) {
-            return source(Paths.get(source));
-        }
+        public Builder sink(SoxSink sink) {
+            this.sink = sink;
 
-        public Builder destination(Path destination) {
-            this.destination = destination;
-            return this;
-        }
-
-        public Builder destination(String destination) {
-            return this.destination(Paths.get(destination));
-        }
-
-        public Builder overwriteDestination(boolean overwriteDestination) {
-            this.overwriteDestination = overwriteDestination;
             return this;
         }
 
@@ -125,8 +109,7 @@ public final class SoxEffectsChain implements Closeable {
         public SoxEffectsChain build() {
             SoxEffectsChain soxEffectsChain = new SoxEffectsChain(
                     nonNull(source, "Source is required to be specified"),
-                    nonNull(destination, "Destination is required to be specified."),
-                    overwriteDestination);
+                    nonNull(sink, "Sink is required to be specified"));
 
             soxEffectsChain.addInputEffect();
             for (Effect effect : effects) {
@@ -137,5 +120,4 @@ public final class SoxEffectsChain implements Closeable {
             return soxEffectsChain;
         }
     }
-
 }
