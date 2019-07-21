@@ -6,8 +6,8 @@ import com.anthemengineering.sox.jna.sox_format_t;
 
 public class SoxMain {
 
-    public static final String SOURCE_PATH = "src/test/resources/ascending-fifths.wav";
-    public static final String DESTINATION_PATH = "output.wav";
+    private static final String SOURCE_PATH = "src/test/resources/ascending-fifths.wav";
+    private static final String DESTINATION_PATH = "target/output.wav";
 
     public static void main(String[] args) {
         Sox sox = new Sox();

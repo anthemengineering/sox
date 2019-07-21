@@ -1,5 +1,6 @@
 package com.anthemengineering.sox;
 
+import com.anthemengineering.sox.effects.SoxEffect;
 import com.anthemengineering.sox.jna.sox_effect_t;
 import com.anthemengineering.sox.jna.sox_effects_chain_t;
 import com.anthemengineering.sox.jna.sox_format_t;
@@ -10,6 +11,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.anthemengineering.sox.ValidationUtil.nonNull;
 
 public final class SoxEffectsChain implements Closeable {
     private final Sox sox;
@@ -37,7 +40,7 @@ public final class SoxEffectsChain implements Closeable {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         sox.deleteEffectsChain(chain);
         sox.close(source);
         sox.close(destination);
@@ -105,6 +108,10 @@ public final class SoxEffectsChain implements Closeable {
             return this;
         }
 
+        public Builder effect(SoxEffect newEffect) {
+            return effect(newEffect.getName(), newEffect.getOptionsList());
+        }
+
         public Builder effect(String name, String... options) {
             effects.add(new Effect(name, options));
             return this;
@@ -116,7 +123,10 @@ public final class SoxEffectsChain implements Closeable {
         }
 
         public SoxEffectsChain build() {
-            SoxEffectsChain soxEffectsChain = new SoxEffectsChain(source, destination, overwriteDestination);
+            SoxEffectsChain soxEffectsChain = new SoxEffectsChain(
+                    nonNull(source, "Source is required to be specified"),
+                    nonNull(destination, "Destination is required to be specified."),
+                    overwriteDestination);
 
             soxEffectsChain.addInputEffect();
             for (Effect effect : effects) {
