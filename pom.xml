@@ -78,7 +78,55 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
+        <plugin>
+          <groupId>com.nativelibs4java</groupId>
+          <artifactId>maven-jnaerator-plugin</artifactId>
+          <version>0.12</version>
+        </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>com.nativelibs4java</groupId>
+        <artifactId>maven-jnaerator-plugin</artifactId>
+        <configuration>
+          <config>${project.build.directory}/jnaerator/config.jnaerator</config>
+          <javaOutputDirectory>${project.build.directory}/generated-sources/jna-bindings</javaOutputDirectory>
+        </configuration>
+      </plugin>
+    </plugins>
+    <resources>
+      <resource>
+        <directory>src/main/jnaerator</directory>
+        <filtering>true</filtering>
+        <targetPath>${project.build.directory}/jnaerator</targetPath>
+      </resource>
+    </resources>
   </build>
+  <profiles>
+    <profile>
+      <id>mac</id>
+      <activation>
+        <os>
+          <family>mac</family>
+        </os>
+      </activation>
+      <properties>
+        <sox_lib_version>14.4.2_3</sox_lib_version>
+        <sox_header>/usr/local/Cellar/sox/${sox_lib_version}/include/sox.h</sox_header>
+      </properties>
+    </profile>
+    <profile>
+      <id>unix</id>
+      <activation>
+        <os>
+          <family>unix</family>
+          <name>Linux</name>
+        </os>
+      </activation>
+      <properties>
+        <sox_header>/usr/include/sox.h</sox_header>
+      </properties>
+    </profile>
+  </profiles>
 </project>
