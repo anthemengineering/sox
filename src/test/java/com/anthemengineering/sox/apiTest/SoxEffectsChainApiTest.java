@@ -2,8 +2,8 @@ package com.anthemengineering.sox.apiTest;
 
 import com.anthemengineering.sox.SoxEffectsChain;
 import com.anthemengineering.sox.SoxException;
-import com.anthemengineering.sox.effects.Highpass;
-import com.anthemengineering.sox.effects.utils.Pass;
+import com.anthemengineering.sox.effects.HighpassFilter;
+import com.anthemengineering.sox.effects.utils.Filter;
 import org.junit.Test;
 
 import java.nio.file.Paths;
@@ -22,9 +22,9 @@ public class SoxEffectsChainApiTest {
                 .destination("anotherPass")
                 .effect("highpass")
                 .effect("highpass", "1000")
-                .effect(new Highpass()
+                .effect(new HighpassFilter()
                         .frequency("1000")
-                        .pole(Pass.Pole.DOUBLE_POLE)
+                        .pole(Filter.Pole.DOUBLE_POLE)
                         .width("10"))
                 .overwriteDestination(true);
 

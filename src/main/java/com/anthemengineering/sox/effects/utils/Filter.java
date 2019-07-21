@@ -21,7 +21,7 @@ import static com.anthemengineering.sox.ValidationUtil.notNullOrEmpty;
  *
  * See also sinc for effects with a steeper roll-off.
  */
-public abstract class Pass implements SoxEffect {
+public abstract class Filter implements SoxEffect {
     public enum Pole {
         DEFAULT_POLE(""),
         SINGLE_POLE("-1"),
@@ -38,19 +38,19 @@ public abstract class Pass implements SoxEffect {
     private String frequency = "";
     private String width = "";
 
-    public Pass pole(Pole pole) {
+    public Filter pole(Pole pole) {
         this.pole = pole;
 
         return this;
     }
 
-    public Pass frequency(String frequency) {
+    public Filter frequency(String frequency) {
         this.frequency = frequency;
 
         return this;
     }
 
-    public Pass width(String width) {
+    public Filter width(String width) {
         this.width = width;
 
         return this;

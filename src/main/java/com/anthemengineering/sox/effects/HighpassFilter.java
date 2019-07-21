@@ -1,8 +1,8 @@
 package com.anthemengineering.sox.effects;
 
-import com.anthemengineering.sox.effects.utils.Pass;
+import com.anthemengineering.sox.effects.utils.Filter;
 
-public class Highpass extends Pass {
+public class HighpassFilter extends Filter {
     @Override
     public String getName() {
         return "highpass";

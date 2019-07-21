@@ -929,7 +929,7 @@ public interface SoxLibrary extends Library {
 	 * Original signature : <code>const sox_format_handler_t* sox_write_handler(const char*, const char*, const char**)</code><br>
 	 * @param path < Path to file (required if filetype is NULL).<br>
 	 * @param filetype < Filetype for which handler is needed, or NULL to use extension from path.<br>
-	 * @param filetype1 < Receives the filetype that was detected. Pass NULL if not needed.<br>
+	 * @param filetype1 < Receives the filetype that was detected. Filter NULL if not needed.<br>
 	 * <i>native declaration : sox.h:1896</i><br>
 	 * @deprecated use the safer methods {@link #sox_write_handler(java.lang.String, java.lang.String, java.lang.String[])} and {@link #sox_write_handler(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
@@ -942,7 +942,7 @@ public interface SoxLibrary extends Library {
 	 * Original signature : <code>const sox_format_handler_t* sox_write_handler(const char*, const char*, const char**)</code><br>
 	 * @param path < Path to file (required if filetype is NULL).<br>
 	 * @param filetype < Filetype for which handler is needed, or NULL to use extension from path.<br>
-	 * @param filetype1 < Receives the filetype that was detected. Pass NULL if not needed.<br>
+	 * @param filetype1 < Receives the filetype that was detected. Filter NULL if not needed.<br>
 	 * <i>native declaration : sox.h:1896</i>
 	 */
 	sox_format_handler_t sox_write_handler(String path, String filetype, String[] filetype1);
