@@ -20,10 +20,22 @@ public final class ValidationUtil {
     }
 
     public static String notNullOrEmpty(String str, String msg) {
-        if (str == null || str.trim().isEmpty()) {
+        if (isNullOrEmpty(str)) {
             throw new SoxException(msg);
         }
 
         return str;
+    }
+
+    public static String nullOrEmpty(String str, String msg) {
+        if (!isNullOrEmpty(str)) {
+            throw new SoxException(msg);
+        }
+
+        return str;
+    }
+
+    private static boolean isNullOrEmpty(String str) {
+        return str == null || str.trim().isEmpty();
     }
 }

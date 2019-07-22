@@ -35,7 +35,6 @@ public class SoxEffectsChainApiTest {
         Files.createDirectories(Paths.get("target/test-output"));
     }
 
-
     @Test
     public void shouldMakeBuilder() {
         SoxEffectsChain.Builder builder = SoxEffectsChain.builder()

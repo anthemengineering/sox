@@ -4,9 +4,9 @@ import com.anthemengineering.sox.effects.utils.OptList;
 
 /**
  * flanger [delay depth regen width speed shape phase interp]
- *
+ * <p>
  * Apply a flanging effect to the audio. See [3] for a detailed description of flanging.
- *
+ * <p>
  * All parameters are optional (right to left).
  */
 public class Flanger implements SoxEffect {
@@ -14,6 +14,17 @@ public class Flanger implements SoxEffect {
     public String getName() {
         return "flanger";
     }
+
+    private static String[] ARG_ORDER = new String[]{
+            "delay",
+            "depth",
+            "regen",
+            "width",
+            "speed",
+            "shape",
+            "phase",
+            "interp"
+    };
 
     private String delay;
     private String depth;
@@ -67,7 +78,16 @@ public class Flanger implements SoxEffect {
     @Override
     public String[] getOptionsList() {
         OptList optList = new OptList();
-        optList.addMany(delay, depth, regen, width, speed, shape, phase, interp);
+        optList.addOrderArguments(
+                ARG_ORDER,
+                delay,
+                depth,
+                regen,
+                width,
+                speed,
+                shape,
+                phase,
+                interp);
 
         return optList.toStringArray();
     }
