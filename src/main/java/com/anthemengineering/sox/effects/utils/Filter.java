@@ -20,6 +20,8 @@ import static com.anthemengineering.sox.ValidationUtil.notNullOrEmpty;
  * These effects support the −−plot global option.
  *
  * See also sinc for effects with a steeper roll-off.
+ *
+ * Documentation is from: http://sox.sourceforge.net/sox.html on 2019-07-21.
  */
 public abstract class Filter implements SoxEffect {
     public enum Pole {

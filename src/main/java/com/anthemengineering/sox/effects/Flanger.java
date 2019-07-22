@@ -8,6 +8,8 @@ import com.anthemengineering.sox.effects.utils.OptList;
  * Apply a flanging effect to the audio. See [3] for a detailed description of flanging.
  * <p>
  * All parameters are optional (right to left).
+ *
+ * Documentation is from: http://sox.sourceforge.net/sox.html on 2019-07-21.
  */
 public class Flanger implements SoxEffect {
     @Override

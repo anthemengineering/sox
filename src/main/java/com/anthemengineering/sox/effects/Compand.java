@@ -74,6 +74,8 @@ import static com.anthemengineering.sox.ValidationUtil.notNullOrEmpty;
  * <p>This effect supports the −−plot global option (for the transfer function).</p>
  *
  * <p>See also mcompand for a multiple-band companding effect.</p>
+ *
+ * Documentation is from: http://sox.sourceforge.net/sox.html on 2019-07-21.
  */
 public class Compand implements SoxEffect {
     private final DecimalFormat floatFormat = FloatPair.createFormat();
