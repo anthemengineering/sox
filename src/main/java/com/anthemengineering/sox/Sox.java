@@ -77,9 +77,7 @@ public final class Sox {
     }
 
     public static void close(sox_format_t format) {
-        if (SoxLibrary.INSTANCE.sox_close(format) != SOX_SUCCESS) {
-            throw new SoxException("Could not close " + format);
-        }
+        assertSuccess(SoxLibrary.INSTANCE.sox_close(format), "Could not close %1$s: %2$d", format);
     }
 
     public static sox_effects_chain_t createEffectsChain(sox_encodinginfo_t inEncoding, sox_encodinginfo_t outEncoding) {
@@ -109,9 +107,10 @@ public final class Sox {
             throw new SoxException("Could not create effects handler for effect with name " + name);
         }
 
-        if (SoxLibrary.INSTANCE.sox_effect_options(effect, options != null ? options.length : 0, options) != SOX_SUCCESS) {
-            throw new SoxException("Could not set effects options on effect with name " + name);
-        }
+        assertSuccess(
+                SoxLibrary.INSTANCE.sox_effect_options(effect, options != null ? options.length : 0, options),
+                "Could not set effects options on effect with name %1$s: %2$d",
+                name);
 
         return effect;
     }
@@ -129,9 +128,10 @@ public final class Sox {
 
         sox_effect_t inputEffect = SoxLibrary.INSTANCE.sox_create_effect(handler);
 
-        if (SoxLibrary.INSTANCE.sox_effect_options(inputEffect, 1, new Pointer[] { input.getPointer() }) != SOX_SUCCESS) {
-            throw new SoxException("Could not create input effect");
-        }
+        assertSuccess(
+                SoxLibrary.INSTANCE.sox_effect_options(inputEffect, 1, new Pointer[] { input.getPointer() }),
+                "Could not set effects options on effect with input %1$s: %2$d",
+                input);
 
         return inputEffect;
     }
@@ -149,24 +149,44 @@ public final class Sox {
             throw new SoxException("Could not create output effect");
         }
 
+        assertSuccess(
+                SoxLibrary.INSTANCE.sox_effect_options(outputEffect, 1, new Pointer[] { output.getPointer() }),
+                "Could not create output effect with output %1$s: %2$d",
+                output);
+
         return outputEffect;
     }
 
     public static sox_effects_chain_t addEffect(sox_effects_chain_t chain, sox_effect_t effp, sox_signalinfo_t in, sox_signalinfo_t out) {
-        if (SoxLibrary.INSTANCE.sox_add_effect(chain, effp, in, out) != SOX_SUCCESS) {
-            throw new SoxException("Could not add effect to chain");
-        }
+        assertSuccess(
+                SoxLibrary.INSTANCE.sox_add_effect(chain, effp, in, out),
+                "Could not add effect to chain (%1$s, %2$s, %3$s, %4$s): %5$d",
+                chain,
+                effp,
+                in,
+                out);
 
         return chain;
     }
 
     public static void flowEffects(sox_effects_chain_t chain, SoxLibrary.sox_flow_effects_callback callback, Pointer client_data) {
-        if (SoxLibrary.INSTANCE.sox_flow_effects(chain, null, null) != SOX_SUCCESS) {
-            throw new SoxException("Could not flow effects");
-        }
+        assertSuccess(
+                SoxLibrary.INSTANCE.sox_flow_effects(chain, null, null),
+                "Could not flow effects (%1$s): %2$d",
+                chain);
     }
 
     public static void flowEffects(sox_effects_chain_t chain) {
         flowEffects(chain, null, null);
+    }
+
+    private static void assertSuccess(int result, String formatMsg, Object ... args) {
+        if (result != SOX_SUCCESS) {
+            Object[] fmtArgs = new Object[args.length + 1];
+            System.arraycopy(args, 0, fmtArgs, 0, args.length);
+            fmtArgs[fmtArgs.length - 1] = result;
+
+            throw new SoxException(String.format(formatMsg, fmtArgs));
+        }
     }
 }

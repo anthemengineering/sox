@@ -3,10 +3,10 @@ package com.anthemengineering.sox.format;
 import com.anthemengineering.sox.Sox;
 import com.anthemengineering.sox.jna.size_t;
 import com.anthemengineering.sox.jna.sox_format_t;
-import com.anthemengineering.sox.jna.sox_signalinfo_t;
 import com.sun.jna.Native;
 
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 
 import static com.anthemengineering.sox.ValidationUtil.nonNull;
 import static com.anthemengineering.sox.ValidationUtil.positiveNumber;
@@ -43,10 +43,13 @@ public class InMemory implements SoxSource, SoxSink {
 
 
     @Override
-    public sox_format_t create(sox_signalinfo_t signal) {
+    public sox_format_t create(sox_format_t format) {
         return Sox.openWrite(
                 nonNull(Native.getDirectBufferPointer(buffer), "Unable to get direct memory pointer"),
                 new size_t(positiveNumber(bufferSize, "BufferSize is not set.")),
-                signal);
+                format.signal,
+                format.encoding,
+                format.filetype.getString(0, StandardCharsets.US_ASCII.name()),
+                null);
     }
 }

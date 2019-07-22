@@ -21,7 +21,7 @@ public final class SoxEffectsChain implements Closeable {
 
     SoxEffectsChain(SoxSource source, SoxSink sink) {
         this.source = source.create();
-        this.destination = sink.create(this.source.signal);
+        this.destination = sink.create(this.source);
 
         this.chain = Sox.createEffectsChain(this.source.encoding, this.destination.encoding);
     }

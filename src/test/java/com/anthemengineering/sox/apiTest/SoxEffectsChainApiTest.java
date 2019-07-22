@@ -18,6 +18,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -99,9 +100,10 @@ public class SoxEffectsChainApiTest {
     }
 
     @Test
-    public void shouldAllowByteBufferToBeUsedAsSource() {
-        byte[] buffer = new byte[ascendingFifths.size()];
+    public void shouldAllowByteBufferToBeUsedAsSource() throws IOException {
+
         Path path = testPath("shouldAllowByteBufferToBeUsedAsSource.wav");
+        deleteSafe(path);
 
         SoxEffectsChain.builder()
                 .source(new InMemory().buffer(ascendingFifths.asByteArray()))
@@ -112,26 +114,31 @@ public class SoxEffectsChainApiTest {
                 .flowEffects()
                 .close();
 
+        byte[] buffer = Files.readAllBytes(path);
+
         assertThat(buffer)
-                .startsWith(60, 70, 80, 90);
+                .startsWith("RIFF".getBytes(StandardCharsets.US_ASCII));
     }
 
     @Test
     public void shouldAllowByteBufferToBeUsedAsSink() {
-        byte[] buffer = new byte[ascendingFifths.size()];
+        ByteBuffer buffer = ByteBuffer.allocateDirect(ascendingFifths.size());
         testPath("shouldAllowByteBufferToBeUsedAsSink.wav");
 
         SoxEffectsChain.builder()
                 .source(new FileSource().path("src/test/resources/ascending-fifths.wav"))
-                .sink(new InMemory().buffer(buffer))
+                .sink(new InMemory().buffer(buffer, ascendingFifths.size()))
                 .effect(new HighpassFilter().frequency("1000"))
                 .effect(new Flanger())
                 .build()
-                .flowEffects()
-                .close();
+                .flowEffects();
 
-        assertThat(buffer)
-                .startsWith(60, 70, 80, 90);
+        byte[] bufferBytes = new byte[ascendingFifths.size()];
+        buffer.rewind();
+        buffer.get(bufferBytes);
+
+        assertThat(bufferBytes)
+                .startsWith("RIFF".getBytes(StandardCharsets.US_ASCII));
     }
 
     private void deleteSafe(Path p) {

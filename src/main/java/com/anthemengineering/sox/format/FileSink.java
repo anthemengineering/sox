@@ -2,7 +2,6 @@ package com.anthemengineering.sox.format;
 
 import com.anthemengineering.sox.Sox;
 import com.anthemengineering.sox.jna.sox_format_t;
-import com.anthemengineering.sox.jna.sox_signalinfo_t;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -30,10 +29,10 @@ public class FileSink implements SoxSink {
     }
 
     @Override
-    public sox_format_t create(sox_signalinfo_t sourceSignal) {
+    public sox_format_t create(sox_format_t sourceFormat) {
         return Sox.openWrite(
                 nonNull(path, "Sink path is required to be specified.").toAbsolutePath().toString(),
-                sourceSignal,
+                sourceFormat.signal,
                 overwrite);
     }
 }
