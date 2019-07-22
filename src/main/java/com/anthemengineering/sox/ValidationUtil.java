@@ -1,5 +1,7 @@
 package com.anthemengineering.sox;
 
+import java.util.Collection;
+
 public final class ValidationUtil {
     private ValidationUtil() {}
 
@@ -25,6 +27,14 @@ public final class ValidationUtil {
         }
 
         return str;
+    }
+
+    public static <T extends Collection<?>> T notNullOrEmpty(T col, String msg) {
+        if (col == null || col.isEmpty()) {
+            throw new SoxException(msg);
+        }
+
+        return col;
     }
 
     public static String nullOrEmpty(String str, String msg) {

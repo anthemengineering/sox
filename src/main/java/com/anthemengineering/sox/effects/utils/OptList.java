@@ -1,6 +1,7 @@
 package com.anthemengineering.sox.effects.utils;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import static com.anthemengineering.sox.ValidationUtil.nullOrEmpty;
 
@@ -17,6 +18,20 @@ public class OptList extends ArrayList<String> {
         }
 
         return super.add(toAdd);
+    }
+
+    public boolean addListOption(Collection<?> opt) {
+        if (opt == null || opt.isEmpty()) {
+            return false;
+        }
+
+        StringBuilder value = new StringBuilder();
+        for (Object item : opt) {
+            value.append(item);
+            value.append(',');
+        }
+
+        return add(value.substring(0, value.length() - 1));
     }
 
     /**
