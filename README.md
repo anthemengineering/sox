@@ -1,4 +1,4 @@
-# sox
+# sox-jna
 This project is a Java JNA binding to the [Sound eXchange(SoX)](http://sox.sourceforge.net/) audio processing library.
 
 ## Dependencies
@@ -45,7 +45,7 @@ wget https://repo1.maven.org/maven2/com/nativelibs4java/jnaerator/0.12/jnaerator
 java -jar jnaerator-0.12-shaded.jar -runtime JNA -mode Directory -library sox -package com.anthemengineering.sox.jna sox.h
 ```
 
-## Building the sox wrapper
+## Building the sox-jna wrapper
 ```bash
 ./mvnw package
 ```
