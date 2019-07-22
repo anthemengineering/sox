@@ -9,6 +9,7 @@ import com.sun.jna.Native;
 import java.nio.ByteBuffer;
 
 import static com.anthemengineering.sox.ValidationUtil.nonNull;
+import static com.anthemengineering.sox.ValidationUtil.positiveNumber;
 
 public class InMemory implements SoxSource, SoxSink {
     private ByteBuffer buffer;
@@ -17,6 +18,7 @@ public class InMemory implements SoxSource, SoxSink {
     public InMemory buffer(byte[] buffer) {
         this.buffer = ByteBuffer.allocateDirect(buffer.length);
         this.buffer.put(buffer);
+        this.bufferSize = buffer.length;
 
         return this;
     }
@@ -34,12 +36,17 @@ public class InMemory implements SoxSource, SoxSink {
 
     @Override
     public sox_format_t create() {
-        return Sox.openRead(nonNull(Native.getDirectBufferPointer(buffer), "Unable to get direct memory pointer"), new size_t(bufferSize));
+        return Sox.openRead(
+                nonNull(Native.getDirectBufferPointer(buffer), "Unable to get direct memory pointer"),
+                new size_t(positiveNumber(bufferSize, "BufferSize is not set.")));
     }
 
 
     @Override
     public sox_format_t create(sox_signalinfo_t signal) {
-        return Sox.openWrite(nonNull(Native.getDirectBufferPointer(buffer), "Unable to get direct memory pointer"), new size_t(bufferSize), signal);
+        return Sox.openWrite(
+                nonNull(Native.getDirectBufferPointer(buffer), "Unable to get direct memory pointer"),
+                new size_t(positiveNumber(bufferSize, "BufferSize is not set.")),
+                signal);
     }
 }

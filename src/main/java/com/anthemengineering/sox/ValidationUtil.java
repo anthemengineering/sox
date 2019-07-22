@@ -11,6 +11,14 @@ public final class ValidationUtil {
         return obj;
     }
 
+    public static long positiveNumber(long num, String msg) {
+        if (num <= 0) {
+            throw new SoxException(msg);
+        }
+
+        return num;
+    }
+
     public static String notNullOrEmpty(String str, String msg) {
         if (str == null || str.trim().isEmpty()) {
             throw new SoxException(msg);
