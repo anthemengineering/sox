@@ -119,6 +119,9 @@
     </plugins>
     <resources>
       <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+      <resource>
         <directory>src/main/jnaerator</directory>
         <filtering>true</filtering>
         <targetPath>${project.build.directory}/jnaerator</targetPath>

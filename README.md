@@ -48,6 +48,8 @@ java -jar jnaerator-0.12-shaded.jar -runtime JNA -mode Directory -library sox -p
 ## Downloading MIT KEMAR HRTF Data Files
 The HRFT data files have already been unpacked and saved to `src/main/resources/kemar`, but if you want to download them again, run the following command.
 
+Note: The `download-maven-plugin` only supports unpacking zip files, so this project uses the Windows compact data set, which is stored as little-endian wav files, not big-endian dat files.
+
 ```bash
 ./mvnw download:wget
 ```
