@@ -21,7 +21,7 @@
 
   <groupId>com.anthemengineering</groupId>
   <artifactId>sox-jna</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
   <description>JNA Bindings to the Sound eXchange(SoX) Library</description>
 
   <name>sox</name>
