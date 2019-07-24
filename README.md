@@ -45,6 +45,13 @@ wget https://repo1.maven.org/maven2/com/nativelibs4java/jnaerator/0.12/jnaerator
 java -jar jnaerator-0.12-shaded.jar -runtime JNA -mode Directory -library sox -package com.anthemengineering.sox.jna sox.h
 ```
 
+## Downloading MIT KEMAR HRTF Data Files
+The HRFT data files have already been unpacked and saved to `src/main/resources/kemar`, but if you want to download them again, run the following command.
+
+```bash
+./mvnw download:wget
+```
+
 ## Building the sox-jna wrapper
 ```bash
 ./mvnw package

@@ -90,6 +90,11 @@
           <artifactId>maven-jnaerator-plugin</artifactId>
           <version>0.12</version>
         </plugin>
+        <plugin>
+          <groupId>com.googlecode.maven-download-plugin</groupId>
+          <artifactId>download-maven-plugin</artifactId>
+          <version>1.4.2</version>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -99,6 +104,16 @@
         <configuration>
           <config>${project.build.directory}/jnaerator/config.jnaerator</config>
           <javaOutputDirectory>${project.build.directory}/generated-sources/jna-bindings</javaOutputDirectory>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.googlecode.maven-download-plugin</groupId>
+        <artifactId>download-maven-plugin</artifactId>
+        <configuration>
+          <uri>http://sound.media.mit.edu/resources/KEMAR/compact.zip</uri>
+          <unpack>true</unpack>
+          <outputDirectory>${project.build.directory}/kemar</outputDirectory>
+          <md5>72ddc4541f585197daf7a5afc26cc331</md5>
         </configuration>
       </plugin>
     </plugins>
