@@ -21,7 +21,7 @@
 
   <groupId>com.anthemengineering</groupId>
   <artifactId>sox-jna</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0</version>
 
   <name>sox</name>
   <url>https://github.com/anthemengineering/sox-jna</url>
