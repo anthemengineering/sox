@@ -10,6 +10,7 @@ This project is a Java JNA binding to the [Sound eXchange(SoX)](http://sox.sourc
   <version>${sox-jna.version}</version>
 </dependency>
 ```
+[Maven Central](https://search.maven.org/artifact/com.anthemengineering/sox-jna)
 
 ## Dependencies
 Install sox-14.4.2 onto your library path.
