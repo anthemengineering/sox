@@ -1,6 +1,16 @@
 # sox-jna
 This project is a Java JNA binding to the [Sound eXchange(SoX)](http://sox.sourceforge.net/) audio processing library.
 
+## Maven Coordinates
+
+```
+<dependency>
+  <groupId>com.anthemengineering</groupId>
+  <artifactId>sox-jna</artifactId>
+  <version>${sox-jna.version}</version>
+</dependency>
+```
+
 ## Dependencies
 Install sox-14.4.2 onto your library path.
 
