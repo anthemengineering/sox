@@ -14,22 +14,22 @@ import java.util.List;
 @SuppressWarnings({"unused", "JavaDoc"})
 public class lsx_option_t extends Structure {
 	/**
-	 * < Name of the long option.<br>
+	 * Name of the long option.<br>
 	 * C type : const char*
 	 */
 	public Pointer name;
 	/**
-	 * @see lsx_option_arg_t<br>
-	 * < Whether the long option supports an argument and, if so, whether the argument is required or optional.<br>
+	 * see lsx_option_arg_t<br>
+	 * Whether the long option supports an argument and, if so, whether the argument is required or optional.<br>
 	 * C type : lsx_option_arg_t
 	 */
 	public int has_arg;
 	/**
-	 * < Flag to set if argument is present.<br>
+	 * Flag to set if argument is present.<br>
 	 * C type : int*
 	 */
 	public IntByReference flag;
-	/** < Value to put in flag if argument is present. */
+	/** Value to put in flag if argument is present. */
 	public int val;
 	public lsx_option_t() {
 		super();
@@ -38,14 +38,14 @@ public class lsx_option_t extends Structure {
 		return Arrays.asList("name", "has_arg", "flag", "val");
 	}
 	/**
-	 * @param name < Name of the long option.<br>
+	 * @param name Name of the long option.<br>
 	 * C type : const char*<br>
-	 * @param has_arg @see lsx_option_arg_t<br>
-	 * < Whether the long option supports an argument and, if so, whether the argument is required or optional.<br>
+	 * @param has_arg see lsx_option_arg_t<br>
+	 * Whether the long option supports an argument and, if so, whether the argument is required or optional.<br>
 	 * C type : lsx_option_arg_t<br>
-	 * @param flag < Flag to set if argument is present.<br>
+	 * @param flag Flag to set if argument is present.<br>
 	 * C type : int*<br>
-	 * @param val < Value to put in flag if argument is present.
+	 * @param val Value to put in flag if argument is present.
 	 */
 	public lsx_option_t(Pointer name, int has_arg, IntByReference flag, int val) {
 		super();

@@ -13,32 +13,32 @@ import java.util.List;
 @SuppressWarnings({"unused", "JavaDoc"})
 public class sox_encodinginfo_t extends Structure {
 	/**
-	 * @see sox_encoding_t<br>
-	 * < format of sample numbers<br>
+	 * see sox_encoding_t<br>
+	 * format of sample numbers<br>
 	 * C type : sox_encoding_t
 	 */
 	public int encoding;
-	/** < 0 if unknown or variable; uncompressed value if lossless; compressed value if lossy */
+	/** 0 if unknown or variable; uncompressed value if lossless; compressed value if lossy */
 	public int bits_per_sample;
-	/** < compression factor (where applicable) */
+	/** compression factor (where applicable) */
 	public double compression;
 	/**
-	 * @see sox_option_t<br>
+	 * see sox_option_t<br>
 	 * C type : sox_option_t
 	 */
 	public int reverse_bytes;
 	/**
-	 * @see sox_option_t<br>
+	 * see sox_option_t<br>
 	 * C type : sox_option_t
 	 */
 	public int reverse_nibbles;
 	/**
-	 * @see sox_option_t<br>
+	 * see sox_option_t<br>
 	 * C type : sox_option_t
 	 */
 	public int reverse_bits;
 	/**
-	 * @see sox_bool<br>
+	 * see sox_bool<br>
 	 * C type : sox_bool
 	 */
 	public int opposite_endian;
@@ -49,18 +49,18 @@ public class sox_encodinginfo_t extends Structure {
 		return Arrays.asList("encoding", "bits_per_sample", "compression", "reverse_bytes", "reverse_nibbles", "reverse_bits", "opposite_endian");
 	}
 	/**
-	 * @param encoding @see sox_encoding_t<br>
-	 * < format of sample numbers<br>
+	 * @param encoding see sox_encoding_t<br>
+	 * format of sample numbers<br>
 	 * C type : sox_encoding_t<br>
-	 * @param bits_per_sample < 0 if unknown or variable; uncompressed value if lossless; compressed value if lossy<br>
-	 * @param compression < compression factor (where applicable)<br>
-	 * @param reverse_bytes @see sox_option_t<br>
+	 * @param bits_per_sample 0 if unknown or variable; uncompressed value if lossless; compressed value if lossy<br>
+	 * @param compression compression factor (where applicable)<br>
+	 * @param reverse_bytes see sox_option_t<br>
 	 * C type : sox_option_t<br>
-	 * @param reverse_nibbles @see sox_option_t<br>
+	 * @param reverse_nibbles see sox_option_t<br>
 	 * C type : sox_option_t<br>
-	 * @param reverse_bits @see sox_option_t<br>
+	 * @param reverse_bits see sox_option_t<br>
 	 * C type : sox_option_t<br>
-	 * @param opposite_endian @see sox_bool<br>
+	 * @param opposite_endian see sox_bool<br>
 	 * C type : sox_bool
 	 */
 	public sox_encodinginfo_t(int encoding, int bits_per_sample, double compression, int reverse_bytes, int reverse_nibbles, int reverse_bits, int opposite_endian) {

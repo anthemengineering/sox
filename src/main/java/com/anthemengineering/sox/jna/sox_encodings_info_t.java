@@ -13,18 +13,18 @@ import java.util.List;
 @SuppressWarnings({"unused", "JavaDoc"})
 public class sox_encodings_info_t extends Structure {
 	/**
-	 * @see sox_encodings_flags_t<br>
-	 * < lossy once (lossy1), lossy twice (lossy2), or lossless (none).<br>
+	 * see sox_encodings_flags_t<br>
+	 * lossy once (lossy1), lossy twice (lossy2), or lossless (none).<br>
 	 * C type : sox_encodings_flags_t
 	 */
 	public int flags;
 	/**
-	 * < encoding name.<br>
+	 * encoding name.<br>
 	 * C type : const char*
 	 */
 	public Pointer name;
 	/**
-	 * < encoding description.<br>
+	 * encoding description.<br>
 	 * C type : const char*
 	 */
 	public Pointer desc;
@@ -35,12 +35,12 @@ public class sox_encodings_info_t extends Structure {
 		return Arrays.asList("flags", "name", "desc");
 	}
 	/**
-	 * @param flags @see sox_encodings_flags_t<br>
-	 * < lossy once (lossy1), lossy twice (lossy2), or lossless (none).<br>
+	 * @param flags see sox_encodings_flags_t<br>
+	 * lossy once (lossy1), lossy twice (lossy2), or lossless (none).<br>
 	 * C type : sox_encodings_flags_t<br>
-	 * @param name < encoding name.<br>
+	 * @param name encoding name.<br>
 	 * C type : const char*<br>
-	 * @param desc < encoding description.<br>
+	 * @param desc encoding description.<br>
 	 * C type : const char*
 	 */
 	public sox_encodings_info_t(int flags, Pointer name, Pointer desc) {

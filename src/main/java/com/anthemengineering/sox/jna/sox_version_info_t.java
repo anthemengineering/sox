@@ -12,46 +12,46 @@ import java.util.List;
  */
 @SuppressWarnings({"unused", "JavaDoc"})
 public class sox_version_info_t extends Structure {
-	/** < structure size = sizeof(sox_version_info_t) */
+	/** structure size = sizeof(sox_version_info_t) */
 	public size_t size;
 	/**
-	 * @see sox_version_flags_t<br>
-	 * < feature flags = popen | magic | threads | memopen<br>
+	 * see sox_version_flags_t<br>
+	 * feature flags = popen | magic | threads | memopen<br>
 	 * C type : sox_version_flags_t
 	 */
 	public int flags;
 	/**
-	 * < version number = 0x140400<br>
+	 * version number = 0x140400<br>
 	 * C type : sox_uint32_t
 	 */
 	public int version_code;
 	/**
-	 * < version string = sox_version(), for example, "14.4.0"<br>
+	 * version string = sox_version(), for example, "14.4.0"<br>
 	 * C type : const char*
 	 */
 	public Pointer version;
 	/**
-	 * < version extra info or null = "PACKAGE_EXTRA", for example, "beta"<br>
+	 * version extra info or null = "PACKAGE_EXTRA", for example, "beta"<br>
 	 * C type : const char*
 	 */
 	public Pointer version_extra;
 	/**
-	 * < build time = "__DATE__ __TIME__", for example, "Jan  7 2010 03:31:50"<br>
+	 * build time = "__DATE__ __TIME__", for example, "Jan  7 2010 03:31:50"<br>
 	 * C type : const char*
 	 */
 	public Pointer time;
 	/**
-	 * < distro or null = "DISTRO", for example, "Debian"<br>
+	 * distro or null = "DISTRO", for example, "Debian"<br>
 	 * C type : const char*
 	 */
 	public Pointer distro;
 	/**
-	 * < compiler info or null, for example, "msvc 160040219"<br>
+	 * compiler info or null, for example, "msvc 160040219"<br>
 	 * C type : const char*
 	 */
 	public Pointer compiler;
 	/**
-	 * < arch, for example, "1248 48 44 L OMP"<br>
+	 * arch, for example, "1248 48 44 L OMP"<br>
 	 * C type : const char*
 	 */
 	public Pointer arch;
@@ -62,23 +62,23 @@ public class sox_version_info_t extends Structure {
 		return Arrays.asList("size", "flags", "version_code", "version", "version_extra", "time", "distro", "compiler", "arch");
 	}
 	/**
-	 * @param size < structure size = sizeof(sox_version_info_t)<br>
-	 * @param flags @see sox_version_flags_t<br>
-	 * < feature flags = popen | magic | threads | memopen<br>
+	 * @param size structure size = sizeof(sox_version_info_t)<br>
+	 * @param flags see sox_version_flags_t<br>
+	 * feature flags = popen | magic | threads | memopen<br>
 	 * C type : sox_version_flags_t<br>
-	 * @param version_code < version number = 0x140400<br>
+	 * @param version_code version number = 0x140400<br>
 	 * C type : sox_uint32_t<br>
-	 * @param version < version string = sox_version(), for example, "14.4.0"<br>
+	 * @param version version string = sox_version(), for example, "14.4.0"<br>
 	 * C type : const char*<br>
-	 * @param version_extra < version extra info or null = "PACKAGE_EXTRA", for example, "beta"<br>
+	 * @param version_extra version extra info or null = "PACKAGE_EXTRA", for example, "beta"<br>
 	 * C type : const char*<br>
-	 * @param time < build time = "__DATE__ __TIME__", for example, "Jan  7 2010 03:31:50"<br>
+	 * @param time build time = "__DATE__ __TIME__", for example, "Jan  7 2010 03:31:50"<br>
 	 * C type : const char*<br>
-	 * @param distro < distro or null = "DISTRO", for example, "Debian"<br>
+	 * @param distro distro or null = "DISTRO", for example, "Debian"<br>
 	 * C type : const char*<br>
-	 * @param compiler < compiler info or null, for example, "msvc 160040219"<br>
+	 * @param compiler compiler info or null, for example, "msvc 160040219"<br>
 	 * C type : const char*<br>
-	 * @param arch < arch, for example, "1248 48 44 L OMP"<br>
+	 * @param arch arch, for example, "1248 48 44 L OMP"<br>
 	 * C type : const char*
 	 */
 	public sox_version_info_t(size_t size, int flags, int version_code, Pointer version, Pointer version_extra, Pointer time, Pointer distro, Pointer compiler, Pointer arch) {

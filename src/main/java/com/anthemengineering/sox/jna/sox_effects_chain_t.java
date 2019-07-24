@@ -16,31 +16,31 @@ import java.util.List;
 @SuppressWarnings({"unused", "JavaDoc"})
 public class sox_effects_chain_t extends Structure {
 	/**
-	 * < Table of effects to be applied to a stream<br>
+	 * Table of effects to be applied to a stream<br>
 	 * C type : sox_effect_t**
 	 */
 	public PointerByReference effects;
-	/** < Number of effects to be applied */
+	/** Number of effects to be applied */
 	public size_t length;
 	/**
-	 * < Copy of global effects settings<br>
+	 * Copy of global effects settings<br>
 	 * C type : sox_effects_globals_t
 	 */
 	public sox_effects_globals_t global_info;
 	/**
-	 * < Input encoding<br>
+	 * Input encoding<br>
 	 * C type : const sox_encodinginfo_t*
 	 */
 	public com.anthemengineering.sox.jna.sox_encodinginfo_t.ByReference in_enc;
 	/**
-	 * < Output encoding<br>
+	 * Output encoding<br>
 	 * C type : const sox_encodinginfo_t*
 	 */
 	public com.anthemengineering.sox.jna.sox_encodinginfo_t.ByReference out_enc;
-	/** < Size of effects table (including unused entries) */
+	/** Size of effects table (including unused entries) */
 	public size_t table_size;
 	/**
-	 * < Channel interleave buffer<br>
+	 * Channel interleave buffer<br>
 	 * C type : sox_sample_t*
 	 */
 	public IntByReference il_buf;
@@ -51,17 +51,17 @@ public class sox_effects_chain_t extends Structure {
 		return Arrays.asList("effects", "length", "global_info", "in_enc", "out_enc", "table_size", "il_buf");
 	}
 	/**
-	 * @param effects < Table of effects to be applied to a stream<br>
+	 * @param effects Table of effects to be applied to a stream<br>
 	 * C type : sox_effect_t**<br>
-	 * @param length < Number of effects to be applied<br>
-	 * @param global_info < Copy of global effects settings<br>
+	 * @param length Number of effects to be applied<br>
+	 * @param global_info Copy of global effects settings<br>
 	 * C type : sox_effects_globals_t<br>
-	 * @param in_enc < Input encoding<br>
+	 * @param in_enc Input encoding<br>
 	 * C type : const sox_encodinginfo_t*<br>
-	 * @param out_enc < Output encoding<br>
+	 * @param out_enc Output encoding<br>
 	 * C type : const sox_encodinginfo_t*<br>
-	 * @param table_size < Size of effects table (including unused entries)<br>
-	 * @param il_buf < Channel interleave buffer<br>
+	 * @param table_size Size of effects table (including unused entries)<br>
+	 * @param il_buf Channel interleave buffer<br>
 	 * C type : sox_sample_t*
 	 */
 	public sox_effects_chain_t(PointerByReference effects, size_t length, sox_effects_globals_t global_info, com.anthemengineering.sox.jna.sox_encodinginfo_t.ByReference in_enc, com.anthemengineering.sox.jna.sox_encodinginfo_t.ByReference out_enc, size_t table_size, IntByReference il_buf) {

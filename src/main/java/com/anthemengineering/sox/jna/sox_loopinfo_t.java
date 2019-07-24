@@ -13,18 +13,18 @@ import java.util.List;
 @SuppressWarnings({"unused", "JavaDoc"})
 public class sox_loopinfo_t extends Structure {
 	/**
-	 * < first sample<br>
+	 * first sample<br>
 	 * C type : sox_uint64_t
 	 */
 	public long start;
 	/**
-	 * < length<br>
+	 * length<br>
 	 * C type : sox_uint64_t
 	 */
 	public long length;
-	/** < number of repeats, 0=forever */
+	/** number of repeats, 0=forever */
 	public int count;
-	/** < 0=no, 1=forward, 2=forward/back (see sox_loop_* for valid values). */
+	/** 0=no, 1=forward, 2=forward/back (see sox_loop_* for valid values). */
 	public byte type;
 	public sox_loopinfo_t() {
 		super();
@@ -33,12 +33,12 @@ public class sox_loopinfo_t extends Structure {
 		return Arrays.asList("start", "length", "count", "type");
 	}
 	/**
-	 * @param start < first sample<br>
+	 * @param start first sample<br>
 	 * C type : sox_uint64_t<br>
-	 * @param length < length<br>
+	 * @param length length<br>
 	 * C type : sox_uint64_t<br>
-	 * @param count < number of repeats, 0=forever<br>
-	 * @param type < 0=no, 1=forward, 2=forward/back (see sox_loop_* for valid values).
+	 * @param count number of repeats, 0=forever<br>
+	 * @param type 0=no, 1=forward, 2=forward/back (see sox_loop_* for valid values).
 	 */
 	public sox_loopinfo_t(long start, long length, int count, byte type) {
 		super();

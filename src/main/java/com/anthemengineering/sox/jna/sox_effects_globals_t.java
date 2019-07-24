@@ -13,13 +13,13 @@ import java.util.List;
 @SuppressWarnings({"unused", "JavaDoc"})
 public class sox_effects_globals_t extends Structure {
 	/**
-	 * @see sox_plot_t<br>
-	 * < To help the user choose effect & options<br>
+	 * see sox_plot_t<br>
+	 * To help the user choose effect &amp; options<br>
 	 * C type : sox_plot_t
 	 */
 	public int plot;
 	/**
-	 * < Pointer to associated SoX globals<br>
+	 * Pointer to associated SoX globals<br>
 	 * C type : sox_globals_t*
 	 */
 	public com.anthemengineering.sox.jna.sox_globals_t.ByReference global_info;
@@ -30,10 +30,10 @@ public class sox_effects_globals_t extends Structure {
 		return Arrays.asList("plot", "global_info");
 	}
 	/**
-	 * @param plot @see sox_plot_t<br>
-	 * < To help the user choose effect & options<br>
+	 * @param plot see sox_plot_t<br>
+	 * To help the user choose effect &amp; options<br>
 	 * C type : sox_plot_t<br>
-	 * @param global_info < Pointer to associated SoX globals<br>
+	 * @param global_info Pointer to associated SoX globals<br>
 	 * C type : sox_globals_t*
 	 */
 	public sox_effects_globals_t(int plot, com.anthemengineering.sox.jna.sox_globals_t.ByReference global_info) {

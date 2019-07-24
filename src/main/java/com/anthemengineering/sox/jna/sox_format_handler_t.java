@@ -24,52 +24,52 @@ import java.util.List;
  */
 @SuppressWarnings({"unused", "JavaDoc"})
 public class sox_format_handler_t extends Structure {
-	/** < Checked on load; must be 1st in struct */
+	/** Checked on load; must be 1st in struct */
 	public int sox_lib_version_code;
 	/**
-	 * < short description of format<br>
+	 * short description of format<br>
 	 * C type : const char*
 	 */
 	public Pointer description;
 	/**
-	 * < null-terminated array of filename extensions that are handled by this format<br>
+	 * null-terminated array of filename extensions that are handled by this format<br>
 	 * C type : const char**
 	 */
 	public PointerByReference names;
-	/** < File flags (SOX_FILE_* values). */
+	/** File flags (SOX_FILE_* values). */
 	public int flags;
 	/**
-	 * < called to initialize reader (decoder)<br>
+	 * called to initialize reader (decoder)<br>
 	 * C type : sox_format_handler_startread
 	 */
 	public sox_format_handler_startread startread;
 	/**
-	 * < called to read (decode) a block of samples<br>
+	 * called to read (decode) a block of samples<br>
 	 * C type : sox_format_handler_read
 	 */
 	public sox_format_handler_read read;
 	/**
-	 * < called to close reader (decoder); may be null if no closing necessary<br>
+	 * called to close reader (decoder); may be null if no closing necessary<br>
 	 * C type : sox_format_handler_stopread
 	 */
 	public sox_format_handler_stopread stopread;
 	/**
-	 * < called to initialize writer (encoder)<br>
+	 * called to initialize writer (encoder)<br>
 	 * C type : sox_format_handler_startwrite
 	 */
 	public sox_format_handler_startwrite startwrite;
 	/**
-	 * < called to write (encode) a block of samples<br>
+	 * called to write (encode) a block of samples<br>
 	 * C type : sox_format_handler_write
 	 */
 	public sox_format_handler_write write;
 	/**
-	 * < called to close writer (decoder); may be null if no closing necessary<br>
+	 * called to close writer (decoder); may be null if no closing necessary<br>
 	 * C type : sox_format_handler_stopwrite
 	 */
 	public sox_format_handler_stopwrite stopwrite;
 	/**
-	 * < called to reposition reader; may be null if not supported<br>
+	 * called to reposition reader; may be null if not supported<br>
 	 * C type : sox_format_handler_seek
 	 */
 	public sox_format_handler_seek seek;

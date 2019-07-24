@@ -14,17 +14,17 @@ import java.util.List;
 @SuppressWarnings({"unused", "JavaDoc"})
 public class sox_oob_t extends Structure {
 	/**
-	 * < Comment strings in id=value format.<br>
+	 * Comment strings in id=value format.<br>
 	 * C type : sox_comments_t
 	 */
 	public PointerByReference comments;
 	/**
-	 * < Instrument specification<br>
+	 * Instrument specification<br>
 	 * C type : sox_instrinfo_t
 	 */
 	public sox_instrinfo_t instr;
 	/**
-	 * < Looping specification<br>
+	 * Looping specification<br>
 	 * C type : sox_loopinfo_t[8]
 	 */
 	public sox_loopinfo_t[] loops = new sox_loopinfo_t[8];
@@ -35,11 +35,11 @@ public class sox_oob_t extends Structure {
 		return Arrays.asList("comments", "instr", "loops");
 	}
 	/**
-	 * @param comments < Comment strings in id=value format.<br>
+	 * @param comments Comment strings in id=value format.<br>
 	 * C type : sox_comments_t<br>
-	 * @param instr < Instrument specification<br>
+	 * @param instr Instrument specification<br>
 	 * C type : sox_instrinfo_t<br>
-	 * @param loops < Looping specification<br>
+	 * @param loops Looping specification<br>
 	 * C type : sox_loopinfo_t[8]
 	 */
 	public sox_oob_t(PointerByReference comments, sox_instrinfo_t instr, sox_loopinfo_t loops[]) {

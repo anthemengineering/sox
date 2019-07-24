@@ -19,48 +19,48 @@ import java.util.List;
 @SuppressWarnings({"unused", "JavaDoc"})
 public class sox_effect_handler_t extends Structure {
 	/**
-	 * < Effect name<br>
+	 * Effect name<br>
 	 * C type : const char*
 	 */
 	public Pointer name;
 	/**
-	 * < Short explanation of parameters accepted by effect<br>
+	 * Short explanation of parameters accepted by effect<br>
 	 * C type : const char*
 	 */
 	public Pointer usage;
-	/** < Combination of SOX_EFF_* flags */
+	/** Combination of SOX_EFF_* flags */
 	public int flags;
 	/**
-	 * < Called to parse command-line arguments (called once per effect).<br>
+	 * Called to parse command-line arguments (called once per effect).<br>
 	 * C type : sox_effect_handler_getopts
 	 */
 	public sox_effect_handler_getopts getopts;
 	/**
-	 * < Called to initialize effect (called once per flow).<br>
+	 * Called to initialize effect (called once per flow).<br>
 	 * C type : sox_effect_handler
 	 */
 	public sox_effect_handler start;
 	/**
-	 * < Called to process samples.<br>
+	 * Called to process samples.<br>
 	 * C type : sox_effect_handler_flow
 	 */
 	public sox_effect_handler_flow flow;
 	/**
-	 * < Called to finish getting output after input is complete.<br>
+	 * Called to finish getting output after input is complete.<br>
 	 * C type : sox_effect_handler_drain
 	 */
 	public sox_effect_handler_drain drain;
 	/**
-	 * < Called to shut down effect (called once per flow).<br>
+	 * Called to shut down effect (called once per flow).<br>
 	 * C type : sox_effect_handler_stop
 	 */
 	public sox_effect_handler stop;
 	/**
-	 * < Called to shut down effect (called once per effect).<br>
+	 * Called to shut down effect (called once per effect).<br>
 	 * C type : sox_effect_handler_kill
 	 */
 	public sox_effect_handler kill;
-	/** < Size of private data SoX should pre-allocate for effect */
+	/** Size of private data SoX should pre-allocate for effect */
 	public size_t priv_size;
 	public sox_effect_handler_t() {
 		super();

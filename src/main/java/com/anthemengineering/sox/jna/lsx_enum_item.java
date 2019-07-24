@@ -13,11 +13,11 @@ import java.util.List;
 @SuppressWarnings({"unused", "JavaDoc"})
 public class lsx_enum_item extends Structure {
 	/**
-	 * < String name of enumeration.<br>
+	 * String name of enumeration.<br>
 	 * C type : const char*
 	 */
 	public Pointer text;
-	/** < Integer value of enumeration. */
+	/** Integer value of enumeration. */
 	public int value;
 	public lsx_enum_item() {
 		super();
@@ -26,9 +26,9 @@ public class lsx_enum_item extends Structure {
 		return Arrays.asList("text", "value");
 	}
 	/**
-	 * @param text < String name of enumeration.<br>
+	 * @param text String name of enumeration.<br>
 	 * C type : const char*<br>
-	 * @param value < Integer value of enumeration.
+	 * @param value Integer value of enumeration.
 	 */
 	public lsx_enum_item(Pointer text, int value) {
 		super();

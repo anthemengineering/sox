@@ -16,59 +16,59 @@ import java.util.List;
 @SuppressWarnings({"unused", "JavaDoc"})
 public class sox_effect_t extends Structure {
 	/**
-	 * < global effect parameters<br>
+	 * global effect parameters<br>
 	 * C type : sox_effects_globals_t*
 	 */
 	public com.anthemengineering.sox.jna.sox_effects_globals_t.ByReference global_info;
 	/**
-	 * < Information about the incoming data stream<br>
+	 * Information about the incoming data stream<br>
 	 * C type : sox_signalinfo_t
 	 */
 	public sox_signalinfo_t in_signal;
 	/**
-	 * < Information about the outgoing data stream<br>
+	 * Information about the outgoing data stream<br>
 	 * C type : sox_signalinfo_t
 	 */
 	public sox_signalinfo_t out_signal;
 	/**
-	 * < Information about the incoming data encoding<br>
+	 * Information about the incoming data encoding<br>
 	 * C type : const sox_encodinginfo_t*
 	 */
 	public com.anthemengineering.sox.jna.sox_encodinginfo_t.ByReference in_encoding;
 	/**
-	 * < Information about the outgoing data encoding<br>
+	 * Information about the outgoing data encoding<br>
 	 * C type : const sox_encodinginfo_t*
 	 */
 	public com.anthemengineering.sox.jna.sox_encodinginfo_t.ByReference out_encoding;
 	/**
-	 * < The handler for this effect<br>
+	 * The handler for this effect<br>
 	 * C type : sox_effect_handler_t
 	 */
 	public sox_effect_handler_t handler;
 	/**
-	 * < increment if clipping occurs<br>
+	 * increment if clipping occurs<br>
 	 * C type : sox_uint64_t
 	 */
 	public long clips;
-	/** < 1 if MCHAN, number of chans otherwise */
+	/** 1 if MCHAN, number of chans otherwise */
 	public size_t flows;
-	/** < flow number */
+	/** flow number */
 	public size_t flow;
 	/**
-	 * < Effect's private data area (each flow has a separate copy)<br>
+	 * Effect's private data area (each flow has a separate copy)<br>
 	 * C type : void*
 	 */
 	public Pointer priv;
 	/**
-	 * < output buffer<br>
+	 * output buffer<br>
 	 * C type : sox_sample_t*
 	 */
 	public IntByReference obuf;
-	/** < output buffer: start of valid data section */
+	/** output buffer: start of valid data section */
 	public size_t obeg;
-	/** < output buffer: one past valid data section (oend-obeg is length of current content) */
+	/** output buffer: one past valid data section (oend-obeg is length of current content) */
 	public size_t oend;
-	/** < minimum input buffer content required for calling this effect's flow function; set via lsx_effect_set_imin() */
+	/** minimum input buffer content required for calling this effect's flow function; set via lsx_effect_set_imin() */
 	public size_t imin;
 	public sox_effect_t() {
 		super();

@@ -13,44 +13,44 @@ import java.util.List;
  */
 @SuppressWarnings({"unused", "JavaDoc"})
 public class lsx_getopt_t extends Structure {
-	/** < IN    argc:      Number of arguments in argv */
+	/** IN    argc:      Number of arguments in argv */
 	public int argc;
 	/**
-	 * < IN    argv:      Array of arguments<br>
+	 * IN    argv:      Array of arguments<br>
 	 * C type : char**
 	 */
 	public PointerByReference argv;
 	/**
-	 * < IN    shortopts: Short option characters<br>
+	 * IN    shortopts: Short option characters<br>
 	 * C type : const char*
 	 */
 	public Pointer shortopts;
 	/**
-	 * < IN    longopts:  Array of long option descriptors<br>
+	 * IN    longopts:  Array of long option descriptors<br>
 	 * C type : const lsx_option_t*
 	 */
 	public com.anthemengineering.sox.jna.lsx_option_t.ByReference longopts;
 	/**
-	 * @see lsx_getopt_flags_t<br>
-	 * < IN    flags:     Flags for longonly and opterr<br>
+	 * See lsx_getopt_flags
+	 * IN    flags:     Flags for longonly and opterr<br>
 	 * C type : lsx_getopt_flags_t
 	 */
 	public int flags;
 	/**
-	 * < INOUT curpos:    Maintains state between calls to lsx_getopt<br>
+	 * INOUT curpos:    Maintains state between calls to lsx_getopt<br>
 	 * C type : const char*
 	 */
 	public Pointer curpos;
-	/** < INOUT optind:    Maintains the index of next element to be processed */
+	/** INOUT optind:    Maintains the index of next element to be processed */
 	public int ind;
-	/** < OUT   optopt:    Receives the option character that caused error */
+	/** OUT   optopt:    Receives the option character that caused error */
 	public int opt;
 	/**
-	 * < OUT   optarg:    Receives the value of the option's argument<br>
+	 * OUT   optarg:    Receives the value of the option's argument<br>
 	 * C type : const char*
 	 */
 	public Pointer arg;
-	/** < OUT   lngind:    Receives the index of the matched long option or -1 if not a long option */
+	/** OUT   lngind:    Receives the index of the matched long option or -1 if not a long option */
 	public int lngind;
 	public lsx_getopt_t() {
 		super();

@@ -12,15 +12,15 @@ import java.util.List;
  */
 @SuppressWarnings({"unused", "JavaDoc"})
 public class sox_instrinfo_t extends Structure {
-	/** < for unity pitch playback */
+	/** for unity pitch playback */
 	public byte MIDInote;
-	/** < MIDI pitch-bend low range */
+	/** MIDI pitch-bend low range */
 	public byte MIDIlow;
-	/** < MIDI pitch-bend high range */
+	/** MIDI pitch-bend high range */
 	public byte MIDIhi;
-	/** < 0=no, 1=forward, 2=forward/back (see sox_loop_* values) */
+	/** 0=no, 1=forward, 2=forward/back (see sox_loop_* values) */
 	public byte loopmode;
-	/** < number of active loops (max SOX_MAX_NLOOPS). */
+	/** number of active loops (max SOX_MAX_NLOOPS). */
 	public int nloops;
 	public sox_instrinfo_t() {
 		super();
@@ -29,11 +29,11 @@ public class sox_instrinfo_t extends Structure {
 		return Arrays.asList("MIDInote", "MIDIlow", "MIDIhi", "loopmode", "nloops");
 	}
 	/**
-	 * @param MIDInote < for unity pitch playback<br>
-	 * @param MIDIlow < MIDI pitch-bend low range<br>
-	 * @param MIDIhi < MIDI pitch-bend high range<br>
-	 * @param loopmode < 0=no, 1=forward, 2=forward/back (see sox_loop_* values)<br>
-	 * @param nloops < number of active loops (max SOX_MAX_NLOOPS).
+	 * @param MIDInote for unity pitch playback<br>
+	 * @param MIDIlow MIDI pitch-bend low range<br>
+	 * @param MIDIhi MIDI pitch-bend high range<br>
+	 * @param loopmode 0=no, 1=forward, 2=forward/back (see sox_loop_* values)<br>
+	 * @param nloops number of active loops (max SOX_MAX_NLOOPS).
 	 */
 	public sox_instrinfo_t(byte MIDInote, byte MIDIlow, byte MIDIhi, byte loopmode, int nloops) {
 		super();

@@ -25,11 +25,11 @@ import static com.anthemengineering.sox.ValidationUtil.notNullOrEmpty;
  *
  * <p>The second parameter is a list of points on the compander’s transfer function specified in dB relative to the
  * maximum possible signal amplitude. The input values must be in a strictly increasing order but the transfer function
- * does not have to be monotonically rising.<br/>
+ * does not have to be monotonically rising.<br>
  * If omitted, the value of out-dB1 defaults to the same value as in-dB1; levels below in-dB1 are not
  * companded (but may have gain applied to them). The point 0,0 is assumed but may be overridden (by 0,out-dBn).
  * If the list is preceded by a soft-knee-dB value, then the points at where adjacent line segments on the transfer
- * function meet will be rounded by the amount given.<br/>
+ * function meet will be rounded by the amount given.<br>
  * Typical values for the transfer function are 6:−70,−60,−20.</p>
  *
  * <p><b>The third (optional)</b> parameter is an additional gain in dB to be applied at all points on the transfer
@@ -63,14 +63,11 @@ import static com.anthemengineering.sox.ValidationUtil.notNullOrEmpty;
  * the compander to react a bit more quickly to sudden volume changes.
  * </p>
  *
- * <p>In the next example, compand is being used as a noise-gate for when the noise is at a lower level than the signal:
+ * <p>In the next example, compand is being used as a noise-gate for when the noise is at a lower level than the signal:</p>
  * <pre>play infile compand .1,.2 −inf,−50.1,−inf,−50,−50 0 −90 .1</pre>
- * </p>
  *
- * <p>Here is another noise-gate, this time for when the noise is at a higher level than the signal (making it, in some ways, similar to squelch):
- *
+ * <p>Here is another noise-gate, this time for when the noise is at a higher level than the signal (making it, in some ways, similar to squelch):</p>
  * <pre>play infile compand .1,.1 −45.1,−45,−inf,0,−inf 45 −90 .1</pre>
- * </p>
  * <p>This effect supports the −−plot global option (for the transfer function).</p>
  *
  * <p>See also mcompand for a multiple-band companding effect.</p>

@@ -15,56 +15,56 @@ import java.util.List;
 public class sox_globals_t extends Structure {
 	/**
 	 * public:<br>
-	 * < messages are only written if globals.verbosity >= message.level
+	 * messages are only written if globals.verbosity &gt;= message.level
 	 */
 	public int verbosity;
 	/**
-	 * < client-specified message output callback<br>
+	 * client-specified message output callback<br>
 	 * C type : sox_output_message_handler_t
 	 */
 	public sox_output_message_handler_t output_message_handler;
 	/**
-	 * @see sox_bool<br>
-	 * < true to use pre-determined timestamps and PRNG seed<br>
+	 * see sox_bool<br>
+	 * true to use pre-determined timestamps and PRNG seed<br>
 	 * C type : sox_bool
 	 */
 	public int repeatable;
 	public size_t bufsiz;
 	public size_t input_bufsiz;
 	/**
-	 * < Can be used to re-seed libSoX's PRNG<br>
+	 * Can be used to re-seed libSoX's PRNG<br>
 	 * C type : sox_int32_t
 	 */
 	public int ranqd1;
 	/**
-	 * < Private: tracks the name of the handler currently using stdin<br>
+	 * Private: tracks the name of the handler currently using stdin<br>
 	 * C type : const char*
 	 */
 	public Pointer stdin_in_use_by;
 	/**
-	 * < Private: tracks the name of the handler currently using stdout<br>
+	 * Private: tracks the name of the handler currently using stdout<br>
 	 * C type : const char*
 	 */
 	public Pointer stdout_in_use_by;
 	/**
-	 * < Private: tracks the name of the handler currently writing an output message<br>
+	 * Private: tracks the name of the handler currently writing an output message<br>
 	 * C type : const char*
 	 */
 	public Pointer subsystem;
 	/**
-	 * < Private: client-configured path to use for temporary files<br>
+	 * Private: client-configured path to use for temporary files<br>
 	 * C type : char*
 	 */
 	public Pointer tmp_path;
 	/**
-	 * @see sox_bool<br>
-	 * < Private: true if client has requested use of 'magic' file-type detection<br>
+	 * see sox_bool<br>
+	 * Private: true if client has requested use of 'magic' file-type detection<br>
 	 * C type : sox_bool
 	 */
 	public int use_magic;
 	/**
-	 * @see sox_bool<br>
-	 * < Private: true if client has requested parallel effects processing<br>
+	 * see sox_bool<br>
+	 * Private: true if client has requested parallel effects processing<br>
 	 * C type : sox_bool
 	 */
 	public int use_threads;

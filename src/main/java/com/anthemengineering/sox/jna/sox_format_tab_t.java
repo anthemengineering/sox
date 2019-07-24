@@ -14,12 +14,12 @@ import java.util.List;
 @SuppressWarnings({"unused", "JavaDoc"})
 public class sox_format_tab_t extends Structure {
 	/**
-	 * < Name of format handler<br>
+	 * Name of format handler<br>
 	 * C type : char*
 	 */
 	public Pointer name;
 	/**
-	 * < Function to call to get format handler's information<br>
+	 * Function to call to get format handler's information<br>
 	 * C type : sox_format_fn_t
 	 */
 	public sox_format_fn_t fn;
@@ -30,9 +30,9 @@ public class sox_format_tab_t extends Structure {
 		return Arrays.asList("name", "fn");
 	}
 	/**
-	 * @param name < Name of format handler<br>
+	 * @param name Name of format handler<br>
 	 * C type : char*<br>
-	 * @param fn < Function to call to get format handler's information<br>
+	 * @param fn Function to call to get format handler's information<br>
 	 * C type : sox_format_fn_t
 	 */
 	public sox_format_tab_t(Pointer name, sox_format_fn_t fn) {

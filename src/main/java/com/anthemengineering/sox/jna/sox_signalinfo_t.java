@@ -14,21 +14,21 @@ import java.util.List;
 @SuppressWarnings({"unused", "JavaDoc"})
 public class sox_signalinfo_t extends Structure {
 	/**
-	 * < samples per second, 0 if unknown<br>
+	 * samples per second, 0 if unknown<br>
 	 * C type : sox_rate_t
 	 */
 	public double rate;
-	/** < number of sound channels, 0 if unknown */
+	/** number of sound channels, 0 if unknown */
 	public int channels;
-	/** < bits per sample, 0 if unknown */
+	/** bits per sample, 0 if unknown */
 	public int precision;
 	/**
-	 * < samples * chans in file, 0 if unknown, -1 if unspecified<br>
+	 * samples * chans in file, 0 if unknown, -1 if unspecified<br>
 	 * C type : sox_uint64_t
 	 */
 	public long length;
 	/**
-	 * < Effects headroom multiplier; may be null<br>
+	 * Effects headroom multiplier; may be null<br>
 	 * C type : double*
 	 */
 	public DoubleByReference mult;
@@ -39,13 +39,13 @@ public class sox_signalinfo_t extends Structure {
 		return Arrays.asList("rate", "channels", "precision", "length", "mult");
 	}
 	/**
-	 * @param rate < samples per second, 0 if unknown<br>
+	 * @param rate samples per second, 0 if unknown<br>
 	 * C type : sox_rate_t<br>
-	 * @param channels < number of sound channels, 0 if unknown<br>
-	 * @param precision < bits per sample, 0 if unknown<br>
-	 * @param length < samples * chans in file, 0 if unknown, -1 if unspecified<br>
+	 * @param channels number of sound channels, 0 if unknown<br>
+	 * @param precision bits per sample, 0 if unknown<br>
+	 * @param length samples * chans in file, 0 if unknown, -1 if unspecified<br>
 	 * C type : sox_uint64_t<br>
-	 * @param mult < Effects headroom multiplier; may be null<br>
+	 * @param mult Effects headroom multiplier; may be null<br>
 	 * C type : double*
 	 */
 	public sox_signalinfo_t(double rate, int channels, int precision, long length, DoubleByReference mult) {

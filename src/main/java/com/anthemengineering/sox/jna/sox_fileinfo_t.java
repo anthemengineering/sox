@@ -13,15 +13,15 @@ import java.util.List;
 @SuppressWarnings({"unused", "JavaDoc"})
 public class sox_fileinfo_t extends Structure {
 	/**
-	 * < Pointer to data buffer<br>
+	 * Pointer to data buffer<br>
 	 * C type : char*
 	 */
 	public Pointer buf;
-	/** < Size of buffer in bytes */
+	/** Size of buffer in bytes */
 	public size_t size;
-	/** < Count read into buffer */
+	/** Count read into buffer */
 	public size_t count;
-	/** < Position in buffer */
+	/** Position in buffer */
 	public size_t pos;
 	public sox_fileinfo_t() {
 		super();
@@ -30,11 +30,11 @@ public class sox_fileinfo_t extends Structure {
 		return Arrays.asList("buf", "size", "count", "pos");
 	}
 	/**
-	 * @param buf < Pointer to data buffer<br>
+	 * @param buf Pointer to data buffer<br>
 	 * C type : char*<br>
-	 * @param size < Size of buffer in bytes<br>
-	 * @param count < Count read into buffer<br>
-	 * @param pos < Position in buffer
+	 * @param size Size of buffer in bytes<br>
+	 * @param count Count read into buffer<br>
+	 * @param pos Position in buffer
 	 */
 	public sox_fileinfo_t(Pointer buf, size_t size, size_t count, size_t pos) {
 		super();

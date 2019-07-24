@@ -15,7 +15,7 @@ import java.util.List;
 @SuppressWarnings({"unused", "JavaDoc"})
 public class sox_format_t extends Structure {
 	/**
-	 * < File name<br>
+	 * File name<br>
 	 * C type : char*
 	 */
 	public Pointer filename;
@@ -24,68 +24,68 @@ public class sox_format_t extends Structure {
 	/** C type : sox_encodinginfo_t */
 	public sox_encodinginfo_t encoding;
 	/**
-	 * < Type of file, as determined by header inspection or libmagic.<br>
+	 * Type of file, as determined by header inspection or libmagic.<br>
 	 * C type : char*
 	 */
 	public Pointer filetype;
 	/**
-	 * < comments, instrument info, loop info (out-of-band data)<br>
+	 * comments, instrument info, loop info (out-of-band data)<br>
 	 * C type : sox_oob_t
 	 */
 	public sox_oob_t oob;
 	/**
-	 * @see sox_bool<br>
-	 * < Can seek on this file<br>
+	 * see sox_bool<br>
+	 * Can seek on this file<br>
 	 * C type : sox_bool
 	 */
 	public int seekable;
-	/** < Read or write mode ('r' or 'w') */
+	/** Read or write mode ('r' or 'w') */
 	public byte mode;
 	/**
-	 * < Samples * chans written to file<br>
+	 * Samples * chans written to file<br>
 	 * C type : sox_uint64_t
 	 */
 	public long olength;
 	/**
-	 * < Incremented if clipping occurs<br>
+	 * Incremented if clipping occurs<br>
 	 * C type : sox_uint64_t
 	 */
 	public long clips;
-	/** < Failure error code */
+	/** Failure error code */
 	public int sox_errno;
 	/**
-	 * < Failure error text<br>
+	 * Failure error text<br>
 	 * C type : char[256]
 	 */
 	public byte[] sox_errstr = new byte[256];
 	/**
-	 * < File stream pointer<br>
+	 * File stream pointer<br>
 	 * C type : void*
 	 */
 	public Pointer fp;
 	/**
-	 * @see lsx_io_type<br>
-	 * < Stores whether this is a file, pipe or URL<br>
+	 * see lsx_io_type<br>
+	 * Stores whether this is a file, pipe or URL<br>
 	 * C type : lsx_io_type
 	 */
 	public int io_type;
 	/**
-	 * < Current offset within file<br>
+	 * Current offset within file<br>
 	 * C type : sox_uint64_t
 	 */
 	public long tell_off;
 	/**
-	 * < Offset at which headers end and sound data begins (set by lsx_check_read_params)<br>
+	 * Offset at which headers end and sound data begins (set by lsx_check_read_params)<br>
 	 * C type : sox_uint64_t
 	 */
 	public long data_start;
 	/**
-	 * < Format handler for this file<br>
+	 * Format handler for this file<br>
 	 * C type : sox_format_handler_t
 	 */
 	public sox_format_handler_t handler;
 	/**
-	 * < Format handler's private data area<br>
+	 * Format handler's private data area<br>
 	 * C type : void*
 	 */
 	public Pointer priv;
