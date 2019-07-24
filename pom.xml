@@ -22,6 +22,7 @@
   <groupId>com.anthemengineering</groupId>
   <artifactId>sox-jna</artifactId>
   <version>1.0.0</version>
+  <description>JNA Bindings to the Sound eXchange(SoX) Library</description>
 
   <name>sox</name>
   <url>https://github.com/anthemengineering/sox-jna</url>
@@ -32,6 +33,21 @@
       <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
     </license>
   </licenses>
+
+  <developers>
+    <developer>
+      <name>Alex Chin</name>
+      <email>achin@anthemengineering.com</email>
+      <organization>Anthem Engineering LLC</organization>
+      <organizationUrl>http://www.anthemengineering.com</organizationUrl>
+    </developer>
+    <developer>
+      <name>James Stapleton</name>
+      <email>jstapleton@anthemengineering.com</email>
+      <organization>Anthem Engineering LLC</organization>
+      <organizationUrl>http://www.anthemengineering.com</organizationUrl>
+    </developer>
+  </developers>
 
   <scm>
     <connection>scm:git:https://github.com/anthemengineering/sox-jna.git</connection>
