@@ -16,15 +16,15 @@
 
 package com.anthemengineering.sox.format;
 
-import com.anthemengineering.sox.Sox;
+import com.anthemengineering.sox.inprocess.Sox;
 import com.anthemengineering.sox.jna.sox_format_t;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static com.anthemengineering.sox.ValidationUtil.nonNull;
+import static com.anthemengineering.sox.utils.ValidationUtil.nonNull;
 
-public class FileSink implements SoxSink {
+public class FileSink implements SoxSink, PathBacked {
     private Path path;
     private boolean overwrite;
 
@@ -50,5 +50,10 @@ public class FileSink implements SoxSink {
                 nonNull(path, "Sink path is required to be specified.").toAbsolutePath().toString(),
                 sourceFormat.signal,
                 overwrite);
+    }
+
+    @Override
+    public Path getPath() {
+        return path;
     }
 }

@@ -14,8 +14,9 @@
  *  limitations under the License.
  */
 
-package com.anthemengineering.sox;
+package com.anthemengineering.sox.inprocess;
 
+import com.anthemengineering.sox.utils.SoxException;
 import com.anthemengineering.sox.jna.SoxLibrary;
 
 import java.util.concurrent.atomic.AtomicBoolean;

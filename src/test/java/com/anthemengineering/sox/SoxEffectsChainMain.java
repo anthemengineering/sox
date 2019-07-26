@@ -20,16 +20,14 @@ import com.anthemengineering.sox.effects.Flanger;
 import com.anthemengineering.sox.effects.HighpassFilter;
 import com.anthemengineering.sox.format.FileSink;
 import com.anthemengineering.sox.format.FileSource;
+import com.anthemengineering.sox.inprocess.InProcessExecutor;
 
 public class SoxEffectsChainMain {
     public static void main(String[] args) {
-        SoxEffectsChain.builder()
+        InProcessExecutor.executeNow(SoxEffectsChainBuilder.of()
                 .source(new FileSource().path("src/test/resources/ascending-fifths.wav"))
                 .sink(new FileSink().path("target/output.wav").allowOverwrite())
                 .effect(new HighpassFilter().frequency("1000"))
-                .effect(new Flanger())
-                .build()
-                .flowEffects()
-                .close();
+                .effect(new Flanger()));
     }
 }

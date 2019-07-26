@@ -19,7 +19,7 @@ package com.anthemengineering.sox.effects.utils;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static com.anthemengineering.sox.ValidationUtil.nullOrEmpty;
+import static com.anthemengineering.sox.utils.ValidationUtil.nullOrEmpty;
 
 public class OptList extends ArrayList<String> {
     @Override

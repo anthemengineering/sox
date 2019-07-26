@@ -16,6 +16,7 @@
 
 package com.anthemengineering.sox;
 
+import com.anthemengineering.sox.inprocess.Sox;
 import com.anthemengineering.sox.jna.sox_effect_t;
 import com.anthemengineering.sox.jna.sox_effects_chain_t;
 import com.anthemengineering.sox.jna.sox_format_t;

@@ -14,10 +14,10 @@
  *  limitations under the License.
  */
 
-package com.anthemengineering.sox;
+package com.anthemengineering.sox.format;
 
-public class SoxException extends RuntimeException {
-    public SoxException(String message) {
-        super(message);
-    }
+import java.nio.file.Path;
+
+public interface PathBacked {
+    Path getPath();
 }

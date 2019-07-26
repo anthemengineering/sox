@@ -16,30 +16,29 @@
 
 package com.anthemengineering.sox.format;
 
-import com.anthemengineering.sox.Sox;
+import com.anthemengineering.sox.inprocess.Sox;
 import com.anthemengineering.sox.jna.size_t;
 import com.anthemengineering.sox.jna.sox_format_t;
 import com.sun.jna.Native;
 
-import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
-import static com.anthemengineering.sox.ValidationUtil.nonNull;
-import static com.anthemengineering.sox.ValidationUtil.positiveNumber;
+import static com.anthemengineering.sox.utils.ValidationUtil.nonNull;
+import static com.anthemengineering.sox.utils.ValidationUtil.positiveNumber;
 
-public class InMemory implements SoxSource, SoxSink {
-    private ByteBuffer buffer;
+public class ByteBufferSinkSource implements SoxSource, SoxSink {
+    private java.nio.ByteBuffer buffer;
     private long bufferSize;
 
-    public InMemory buffer(byte[] buffer) {
-        this.buffer = ByteBuffer.allocateDirect(buffer.length);
+    public ByteBufferSinkSource buffer(byte[] buffer) {
+        this.buffer = java.nio.ByteBuffer.allocateDirect(buffer.length);
         this.buffer.put(buffer);
         this.bufferSize = buffer.length;
 
         return this;
     }
 
-    public InMemory buffer(ByteBuffer buffer, long bufferSize) {
+    public ByteBufferSinkSource buffer(java.nio.ByteBuffer buffer, long bufferSize) {
         if (!buffer.isDirect()) {
             return buffer(buffer.array());
         } else {

@@ -16,7 +16,7 @@
 
 package com.anthemengineering.sox.apiTest;
 
-import com.anthemengineering.sox.SoxException;
+import com.anthemengineering.sox.utils.SoxException;
 import com.anthemengineering.sox.effects.utils.OptList;
 import org.junit.Test;
 

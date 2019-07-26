@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.anthemengineering.sox;
+package com.anthemengineering.sox.utils;
 
 import java.util.Collection;
 
