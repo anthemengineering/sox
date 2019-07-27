@@ -133,20 +133,12 @@ public class ForkedProcessExecutor implements SoxEffectsChainExecutor {
 
     private void addSource(List<String> commandLine, SoxEffectsChainBuilder soxEffectsChain) {
         nonNull(soxEffectsChain.getSource(), "Source is required to be specified.");
-        if (soxEffectsChain.getSource().getPath() != null) {
-            commandLine.add(asString(soxEffectsChain.getSource().getPath()));
-        } else {
-            commandLine.add("-");
-        }
+        commandLine.add(soxEffectsChain.getSource().getPath().toString());
     }
 
     private void addSink(List<String> commandLine, SoxEffectsChainBuilder soxEffectsChain) {
         nonNull(soxEffectsChain.getSink(), "Sink is required to be specified.");
-        if (soxEffectsChain.getSink().getPath() != null) {
-            commandLine.add(asString(soxEffectsChain.getSink().getPath()));
-        } else {
-            commandLine.addAll(Arrays.asList("-t", "wav", "-"));
-        }
+        commandLine.addAll(Arrays.asList("-t", "wav", soxEffectsChain.getSink().getPath().toString()));
     }
 
     private void addEffects(List<String> commandLine, SoxEffectsChainBuilder soxEffectsChain) {
@@ -154,10 +146,6 @@ public class ForkedProcessExecutor implements SoxEffectsChainExecutor {
             commandLine.add(effect.name);
             commandLine.addAll(Arrays.asList(effect.options));
         }
-    }
-
-    private String asString(Path p) {
-        return p.toAbsolutePath().toString();
     }
 
     private int estimateSize(SoxEffectsChainBuilder soxEffectsChain) {

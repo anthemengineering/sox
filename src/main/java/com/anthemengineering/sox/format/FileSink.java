@@ -54,6 +54,6 @@ public class FileSink implements SoxSink {
 
     @Override
     public Path getPath() {
-        return path;
+        return path.toAbsolutePath();
     }
 }

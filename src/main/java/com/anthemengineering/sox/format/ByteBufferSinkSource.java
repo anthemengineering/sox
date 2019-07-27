@@ -24,6 +24,7 @@ import com.sun.jna.Native;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static com.anthemengineering.sox.utils.ValidationUtil.nonNull;
 import static com.anthemengineering.sox.utils.ValidationUtil.positiveNumber;
@@ -65,7 +66,7 @@ public class ByteBufferSinkSource implements SoxSource, SoxSink {
 
     @Override
     public Path getPath() {
-        return null;
+        return Paths.get("-");
     }
 
     @Override

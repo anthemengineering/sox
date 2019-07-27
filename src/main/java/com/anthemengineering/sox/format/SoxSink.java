@@ -26,6 +26,6 @@ public interface SoxSink {
     sox_format_t create(sox_format_t signal);
 
     default Path getPath() {
-        return null;
+        return Paths.get("-");
     }
 }

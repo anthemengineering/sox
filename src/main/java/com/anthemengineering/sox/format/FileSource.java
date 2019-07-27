@@ -44,6 +44,6 @@ public class FileSource implements SoxSource {
 
     @Override
     public Path getPath() {
-        return path;
+        return path.toAbsolutePath();
     }
 }

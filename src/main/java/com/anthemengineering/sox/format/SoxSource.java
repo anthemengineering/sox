@@ -19,11 +19,12 @@ package com.anthemengineering.sox.format;
 import com.anthemengineering.sox.jna.sox_format_t;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public interface SoxSource {
     sox_format_t create();
 
     default Path getPath() {
-        return null;
+        return Paths.get("-");
     }
 }
