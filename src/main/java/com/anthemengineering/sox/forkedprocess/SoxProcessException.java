@@ -14,11 +14,10 @@
  *  limitations under the License.
  */
 
-package com.anthemengineering.sox.intraprocess;
+package com.anthemengineering.sox.forkedprocess;
 
 import com.anthemengineering.sox.utils.SoxException;
 
-import java.io.IOException;
 import java.util.List;
 
 public class SoxProcessException extends SoxException {

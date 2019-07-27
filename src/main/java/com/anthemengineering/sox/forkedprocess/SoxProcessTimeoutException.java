@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.anthemengineering.sox.intraprocess;
+package com.anthemengineering.sox.forkedprocess;
 
 import java.util.List;
 

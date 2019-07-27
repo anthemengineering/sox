@@ -20,40 +20,32 @@ import com.anthemengineering.sox.SoxEffectsChainBuilder;
 import com.anthemengineering.sox.TestResource;
 import com.anthemengineering.sox.effects.Flanger;
 import com.anthemengineering.sox.effects.HighpassFilter;
-import com.anthemengineering.sox.effects.utils.Filter;
 import com.anthemengineering.sox.format.*;
-import com.anthemengineering.sox.inprocess.InProcessExecutor;
-import com.anthemengineering.sox.intraprocess.IntraProcessExecutor;
-import com.anthemengineering.sox.intraprocess.SoxProcessException;
-import com.anthemengineering.sox.jna.sox_format_t;
+import com.anthemengineering.sox.forkedprocess.ForkedProcessExecutor;
+import com.anthemengineering.sox.forkedprocess.SoxProcessException;
 import com.anthemengineering.sox.utils.SoxException;
-import com.sun.jna.Memory;
-import com.sun.jna.Native;
-import com.sun.jna.Pointer;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
 
 // TODO: Perform real tests
-public class IntraProcessSoxEffectsChainApiTest {
+public class ForkedProcessSoxEffectsChainApiTest {
     private static final TestResource ascendingFifths = new TestResource("/ascending-fifths.wav");
-    private static IntraProcessExecutor executor;
+    private static ForkedProcessExecutor executor;
 
     @BeforeClass
     public static void setup() throws IOException {
         Files.createDirectories(Paths.get("target/test-output"));
-        executor = new IntraProcessExecutor(4, TimeUnit.SECONDS);
+        executor = new ForkedProcessExecutor(4, TimeUnit.SECONDS);
     }
 
     @Test
@@ -74,7 +66,7 @@ public class IntraProcessSoxEffectsChainApiTest {
         try {
             // TODO better error handling for obvious errors into the command line.
             // right now sox is just running
-            IntraProcessExecutor localExecutor = new IntraProcessExecutor(100, TimeUnit.MILLISECONDS);
+            ForkedProcessExecutor localExecutor = new ForkedProcessExecutor(100, TimeUnit.MILLISECONDS);
             localExecutor.executeNow(SoxEffectsChainBuilder.of()
                     .source(() -> null)
                     .sink(source -> null));

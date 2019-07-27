@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.anthemengineering.sox.intraprocess;
+package com.anthemengineering.sox.forkedprocess;
 
 import com.anthemengineering.sox.SoxEffectsChainBuilder;
 import com.anthemengineering.sox.SoxEffectsChainExecutor;
@@ -34,20 +34,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
 
-import static com.anthemengineering.sox.intraprocess.SoxProcessTimeoutException.NU_TIMEOUT;
+import static com.anthemengineering.sox.forkedprocess.SoxProcessTimeoutException.NU_TIMEOUT;
 import static com.anthemengineering.sox.utils.ValidationUtil.nonNull;
 
-public class IntraProcessExecutor implements SoxEffectsChainExecutor {
+public class ForkedProcessExecutor implements SoxEffectsChainExecutor {
     private static final ScheduledExecutorService cleanupService = Executors.newSingleThreadScheduledExecutor();
 
     private TimeUnit maxProcessTimeoutUnit;
     private long maxProcessTimeoutTime;
 
-    public IntraProcessExecutor() {
+    public ForkedProcessExecutor() {
         this(10, TimeUnit.MINUTES);
     }
 
-    public IntraProcessExecutor(long maxProcessTimeoutTime, TimeUnit maxProcessTimeoutUnit) {
+    public ForkedProcessExecutor(long maxProcessTimeoutTime, TimeUnit maxProcessTimeoutUnit) {
         this.maxProcessTimeoutTime = maxProcessTimeoutTime;
         this.maxProcessTimeoutUnit = maxProcessTimeoutUnit;
     }
