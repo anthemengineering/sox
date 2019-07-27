@@ -21,6 +21,7 @@ import com.anthemengineering.sox.jna.size_t;
 import com.anthemengineering.sox.jna.sox_format_t;
 import com.sun.jna.Native;
 
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
 import static com.anthemengineering.sox.utils.ValidationUtil.nonNull;
@@ -33,6 +34,7 @@ public class ByteBufferSinkSource implements SoxSource, SoxSink {
     public ByteBufferSinkSource buffer(byte[] buffer) {
         this.buffer = java.nio.ByteBuffer.allocateDirect(buffer.length);
         this.buffer.put(buffer);
+        this.buffer.flip();
         this.bufferSize = buffer.length;
 
         return this;
@@ -47,6 +49,10 @@ public class ByteBufferSinkSource implements SoxSource, SoxSink {
         }
 
         return this;
+    }
+
+    public ByteBuffer getBuffer() {
+        return buffer;
     }
 
     @Override

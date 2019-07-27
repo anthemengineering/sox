@@ -16,6 +16,8 @@
 
 package com.anthemengineering.sox;
 
+import java.util.concurrent.CompletableFuture;
+
 public interface SoxEffectsChainExecutor {
-    void execute(SoxEffectsChainBuilder soxEffectsChain);
+    CompletableFuture<Void> execute(SoxEffectsChainBuilder soxEffectsChain);
 }

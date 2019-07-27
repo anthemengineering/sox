@@ -23,21 +23,37 @@ import com.anthemengineering.sox.format.SoxSource;
 import com.anthemengineering.sox.jna.sox_effect_t;
 import com.anthemengineering.sox.jna.sox_effects_chain_t;
 import com.anthemengineering.sox.jna.sox_format_t;
+import com.anthemengineering.sox.utils.SoxException;
 
 import java.io.Closeable;
+import java.util.concurrent.*;
 
 import static com.anthemengineering.sox.utils.ValidationUtil.nonNull;
 
 public class InProcessExecutor implements SoxEffectsChainExecutor {
-    public static void executeNow(SoxEffectsChainBuilder soxEffectsChain) {
-        new InProcessExecutor().execute(soxEffectsChain);
-    }
+    private static final ExecutorService threadPool = Executors.newWorkStealingPool();
 
     @Override
-    public void execute(SoxEffectsChainBuilder soxEffectsChain) {
+    public CompletableFuture<Void> execute(SoxEffectsChainBuilder soxEffectsChain) {
+        return CompletableFuture.supplyAsync(() -> executeAsync(soxEffectsChain), threadPool);
+    }
+
+    public void executeNow(SoxEffectsChainBuilder soxEffectsChain) {
+        try {
+            new InProcessExecutor().execute(soxEffectsChain).get(5, TimeUnit.SECONDS);
+        } catch (InterruptedException|ExecutionException|TimeoutException e) {
+            if (e.getCause() instanceof SoxException) {
+                throw (SoxException) e.getCause();
+            }
+
+            throw new SoxException("Error executing", e);
+        }
+    }
+
+    private Void executeAsync(SoxEffectsChainBuilder soxEffectsChain) {
         try  (SoxFormatClosable source = new SoxFormatClosable(soxEffectsChain.getSource());
-            SoxFormatClosable sink = new SoxFormatClosable(source, soxEffectsChain.getSink());
-            SoxChainClosable chain = new SoxChainClosable(source, sink)){
+              SoxFormatClosable sink = new SoxFormatClosable(source, soxEffectsChain.getSink());
+              SoxChainClosable chain = new SoxChainClosable(source, sink)){
 
             // add input effect
             sox_effect_t inputEffect = Sox.createInputEffect(source.format);
@@ -54,17 +70,17 @@ public class InProcessExecutor implements SoxEffectsChainExecutor {
             Sox.addEffect(chain.chain, outputEffect, source.format.signal, source.format.signal);
 
             Sox.flowEffects(chain.chain);
+
+            return null;
         }
     }
 
     private static class SoxFormatClosable implements Closeable {
-        private boolean imSource;
         private sox_format_t format;
 
         private SoxFormatClosable(SoxSource source) {
             this(nonNull(source, "Source is required to be specified")
                     .create());
-            imSource = true;
         }
 
         private SoxFormatClosable(SoxFormatClosable source, SoxSink sink) {

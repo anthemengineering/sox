@@ -24,7 +24,7 @@ import com.anthemengineering.sox.inprocess.InProcessExecutor;
 
 public class SoxEffectsChainMain {
     public static void main(String[] args) {
-        InProcessExecutor.executeNow(SoxEffectsChainBuilder.of()
+        new InProcessExecutor().executeNow(SoxEffectsChainBuilder.of()
                 .source(new FileSource().path("src/test/resources/ascending-fifths.wav"))
                 .sink(new FileSink().path("target/output.wav").allowOverwrite())
                 .effect(new HighpassFilter().frequency("1000"))

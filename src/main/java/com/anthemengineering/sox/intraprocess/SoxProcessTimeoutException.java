@@ -14,14 +14,18 @@
  *  limitations under the License.
  */
 
-package com.anthemengineering.sox.utils;
+package com.anthemengineering.sox.intraprocess;
 
-public class SoxException extends RuntimeException {
-    public SoxException(String message) {
-        super(message);
+import java.util.List;
+
+public class SoxProcessTimeoutException extends SoxProcessException {
+    public static final int NU_TIMEOUT = Integer.MIN_VALUE;
+
+    public SoxProcessTimeoutException(int pid, String errorString, List<String> commandLine) {
+        super(NU_TIMEOUT,  String.format("Sox pid=%d process timeout: %s", pid, errorString), commandLine);
     }
 
-    public SoxException(String message, Throwable cause) {
-        super(message, cause);
+    public SoxProcessTimeoutException(SoxProcessTimeoutException other) {
+        super(other);
     }
 }
