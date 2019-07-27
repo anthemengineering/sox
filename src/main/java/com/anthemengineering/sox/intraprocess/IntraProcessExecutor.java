@@ -19,9 +19,7 @@ package com.anthemengineering.sox.intraprocess;
 import com.anthemengineering.sox.SoxEffectsChainBuilder;
 import com.anthemengineering.sox.SoxEffectsChainExecutor;
 import com.anthemengineering.sox.format.ByteBufferSinkSource;
-import com.anthemengineering.sox.format.PathBacked;
 import com.anthemengineering.sox.utils.SoxException;
-import com.anthemengineering.sox.utils.ValidationUtil;
 import com.zaxxer.nuprocess.NuAbstractProcessHandler;
 import com.zaxxer.nuprocess.NuProcess;
 import com.zaxxer.nuprocess.NuProcessBuilder;
@@ -30,13 +28,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
 
 import static com.anthemengineering.sox.intraprocess.SoxProcessTimeoutException.NU_TIMEOUT;
-import static com.anthemengineering.sox.utils.ValidationUtil.*;
+import static com.anthemengineering.sox.utils.ValidationUtil.nonNull;
 
 public class IntraProcessExecutor implements SoxEffectsChainExecutor {
     private static final ScheduledExecutorService cleanupService = Executors.newSingleThreadScheduledExecutor();
@@ -75,15 +74,8 @@ public class IntraProcessExecutor implements SoxEffectsChainExecutor {
         List<String> commandLine = buildCommandLine(soxEffectsChain);
         NuProcessBuilder processBuilder = new NuProcessBuilder(commandLine);
 
-        // this is outbound audio, may be null if we passed it in as a commandline argument
-        ByteBuffer sourceAudio = getSourceAudioStream(soxEffectsChain);
-
-        // this is incoming audio, may be null if we passed it in as a commandline argument
-        OutputStream outputStream = getSinkAudioStream(soxEffectsChain);
-
-
         // Setup event handling from the sox process (as the pipe fills up we need to read from it)
-        ProcessHandler processHandler = new ProcessHandler(outputStream, commandLine);
+        ProcessHandler processHandler = new ProcessHandler(getSinkAudioStream(soxEffectsChain), commandLine);
 
         // assign the listener
         processBuilder.setProcessListener(processHandler);
@@ -91,12 +83,15 @@ public class IntraProcessExecutor implements SoxEffectsChainExecutor {
         // vfork + execute
         NuProcess process = processBuilder.start();
 
+        // this is outbound audio, may be null if we passed it in as a commandline argument
+        ByteBuffer sourceAudioBuffer = getSourceAudioBuffer(soxEffectsChain);
+
         // file based this will be null otherwise we have it all in memory.
-        if (sourceAudio != null) {
+        if (sourceAudioBuffer != null) {
             // note this is asynchronous, and nuProcess takes care of pipe buffering for us,
             // we just can't modify the ByteBuffer until its done.
             // Also note, NuProcess can use directBuffer for more efficient operations
-            process.writeStdin(sourceAudio);
+            process.writeStdin(sourceAudioBuffer);
 
             // close stdin after we are done writing
             // false means to write till write is finished, this call is still
@@ -107,7 +102,7 @@ public class IntraProcessExecutor implements SoxEffectsChainExecutor {
         return processHandler.result;
     }
 
-    private ByteBuffer getSourceAudioStream(SoxEffectsChainBuilder soxEffectsChain) {
+    private ByteBuffer getSourceAudioBuffer(SoxEffectsChainBuilder soxEffectsChain) {
         if (soxEffectsChain.getSource() instanceof ByteBufferSinkSource) {
             return ((ByteBufferSinkSource) soxEffectsChain.getSource()).getBuffer();
         }
@@ -138,8 +133,8 @@ public class IntraProcessExecutor implements SoxEffectsChainExecutor {
 
     private void addSource(List<String> commandLine, SoxEffectsChainBuilder soxEffectsChain) {
         nonNull(soxEffectsChain.getSource(), "Source is required to be specified.");
-        if (soxEffectsChain.getSource() instanceof PathBacked) {
-            commandLine.add(asString((PathBacked) soxEffectsChain.getSource()));
+        if (soxEffectsChain.getSource().getPath() != null) {
+            commandLine.add(asString(soxEffectsChain.getSource().getPath()));
         } else {
             commandLine.add("-");
         }
@@ -147,8 +142,8 @@ public class IntraProcessExecutor implements SoxEffectsChainExecutor {
 
     private void addSink(List<String> commandLine, SoxEffectsChainBuilder soxEffectsChain) {
         nonNull(soxEffectsChain.getSink(), "Sink is required to be specified.");
-        if (soxEffectsChain.getSink() instanceof PathBacked) {
-            commandLine.add(asString((PathBacked) soxEffectsChain.getSink()));
+        if (soxEffectsChain.getSink().getPath() != null) {
+            commandLine.add(asString(soxEffectsChain.getSink().getPath()));
         } else {
             commandLine.addAll(Arrays.asList("-t", "wav", "-"));
         }
@@ -161,8 +156,8 @@ public class IntraProcessExecutor implements SoxEffectsChainExecutor {
         }
     }
 
-    private String asString(PathBacked source) {
-        return source.getPath().toAbsolutePath().toString();
+    private String asString(Path p) {
+        return p.toAbsolutePath().toString();
     }
 
     private int estimateSize(SoxEffectsChainBuilder soxEffectsChain) {
@@ -175,6 +170,7 @@ public class IntraProcessExecutor implements SoxEffectsChainExecutor {
     }
 
     private class ProcessHandler extends NuAbstractProcessHandler {
+        // may be null if the output was passed in to sox as a filename
         private final OutputStream sinkAudioStream;
         CompletableFuture<Void> result;
         List<String> commandLine;

@@ -23,6 +23,7 @@ import com.sun.jna.Native;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 
 import static com.anthemengineering.sox.utils.ValidationUtil.nonNull;
 import static com.anthemengineering.sox.utils.ValidationUtil.positiveNumber;
@@ -62,6 +63,10 @@ public class ByteBufferSinkSource implements SoxSource, SoxSink {
                 new size_t(positiveNumber(bufferSize, "BufferSize is not set.")));
     }
 
+    @Override
+    public Path getPath() {
+        return null;
+    }
 
     @Override
     public sox_format_t create(sox_format_t format) {

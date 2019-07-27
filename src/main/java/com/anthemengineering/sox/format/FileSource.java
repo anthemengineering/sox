@@ -24,7 +24,7 @@ import java.nio.file.Paths;
 
 import static com.anthemengineering.sox.utils.ValidationUtil.nonNull;
 
-public class FileSource implements SoxSource, PathBacked {
+public class FileSource implements SoxSource {
     private Path path;
 
     public FileSource path(Path path) {
@@ -42,6 +42,7 @@ public class FileSource implements SoxSource, PathBacked {
         return Sox.openRead(nonNull(path.toAbsolutePath().toString(), "Source is required to be specified"));
     }
 
+    @Override
     public Path getPath() {
         return path;
     }

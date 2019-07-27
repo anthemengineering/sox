@@ -24,7 +24,7 @@ import java.nio.file.Paths;
 
 import static com.anthemengineering.sox.utils.ValidationUtil.nonNull;
 
-public class FileSink implements SoxSink, PathBacked {
+public class FileSink implements SoxSink {
     private Path path;
     private boolean overwrite;
 

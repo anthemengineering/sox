@@ -18,7 +18,14 @@ package com.anthemengineering.sox.format;
 
 import com.anthemengineering.sox.jna.sox_format_t;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 
 public interface SoxSink {
     sox_format_t create(sox_format_t signal);
+
+    default Path getPath() {
+        return null;
+    }
 }
