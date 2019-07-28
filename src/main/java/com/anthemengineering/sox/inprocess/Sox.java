@@ -14,8 +14,9 @@
  *  limitations under the License.
  */
 
-package com.anthemengineering.sox;
+package com.anthemengineering.sox.inprocess;
 
+import com.anthemengineering.sox.utils.SoxException;
 import com.anthemengineering.sox.jna.*;
 import com.sun.jna.Pointer;
 
@@ -93,7 +94,7 @@ public final class Sox {
     }
 
     public static void close(sox_format_t format) {
-        assertSuccess(SoxLibrary.INSTANCE.sox_close(format), "Could not close %1$s: %2$d", format);
+        assertSuccessClose(SoxLibrary.INSTANCE.sox_close(format), "Could not close %1$s: %2$d", format);
     }
 
     public static sox_effects_chain_t createEffectsChain(sox_encodinginfo_t inEncoding, sox_encodinginfo_t outEncoding) {
@@ -198,6 +199,16 @@ public final class Sox {
 
     private static void assertSuccess(int result, String formatMsg, Object ... args) {
         if (result != SOX_SUCCESS) {
+            Object[] fmtArgs = new Object[args.length + 1];
+            System.arraycopy(args, 0, fmtArgs, 0, args.length);
+            fmtArgs[fmtArgs.length - 1] = result;
+
+            throw new SoxException(String.format(formatMsg, fmtArgs));
+        }
+    }
+
+    private static void assertSuccessClose(int result, String formatMsg, Object ... args) {
+        if (result != SOX_SUCCESS && result != -1) {
             Object[] fmtArgs = new Object[args.length + 1];
             System.arraycopy(args, 0, fmtArgs, 0, args.length);
             fmtArgs[fmtArgs.length - 1] = result;

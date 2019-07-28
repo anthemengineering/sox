@@ -14,10 +14,14 @@
  *  limitations under the License.
  */
 
-package com.anthemengineering.sox;
+package com.anthemengineering.sox.utils;
 
 public class SoxException extends RuntimeException {
     public SoxException(String message) {
         super(message);
+    }
+
+    public SoxException(String message, Throwable cause) {
+        super(message, cause);
     }
 }

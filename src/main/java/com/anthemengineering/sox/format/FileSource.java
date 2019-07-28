@@ -16,13 +16,13 @@
 
 package com.anthemengineering.sox.format;
 
-import com.anthemengineering.sox.Sox;
+import com.anthemengineering.sox.inprocess.Sox;
 import com.anthemengineering.sox.jna.sox_format_t;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static com.anthemengineering.sox.ValidationUtil.nonNull;
+import static com.anthemengineering.sox.utils.ValidationUtil.nonNull;
 
 public class FileSource implements SoxSource {
     private Path path;
@@ -40,5 +40,10 @@ public class FileSource implements SoxSource {
     @Override
     public sox_format_t create() {
         return Sox.openRead(nonNull(path.toAbsolutePath().toString(), "Source is required to be specified"));
+    }
+
+    @Override
+    public Path getPath() {
+        return path.toAbsolutePath();
     }
 }

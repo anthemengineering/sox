@@ -18,7 +18,7 @@ package com.anthemengineering.sox.effects.utils;
 
 import com.anthemengineering.sox.effects.SoxEffect;
 
-import static com.anthemengineering.sox.ValidationUtil.notNullOrEmpty;
+import static com.anthemengineering.sox.utils.ValidationUtil.notNullOrEmpty;
 
 /**
  * highpass|lowpass [−1|−2] frequency[k] [width[q|o|h|k]]

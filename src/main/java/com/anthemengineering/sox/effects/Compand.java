@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.anthemengineering.sox.ValidationUtil.notNullOrEmpty;
+import static com.anthemengineering.sox.utils.ValidationUtil.notNullOrEmpty;
 
 /**
  * <h1>Compand (compress or expand) the dynamic range of the audio.</h1>

@@ -14,18 +14,18 @@
  *  limitations under the License.
  */
 
-package com.anthemengineering.sox.format;
+package com.anthemengineering.sox.forkedprocess;
 
-import com.anthemengineering.sox.jna.sox_format_t;
+import java.util.List;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+public class SoxProcessTimeoutException extends SoxProcessException {
+    public static final int NU_TIMEOUT = Integer.MIN_VALUE;
 
+    public SoxProcessTimeoutException(int pid, String errorString, List<String> commandLine) {
+        super(NU_TIMEOUT,  String.format("Sox pid=%d process timeout: %s", pid, errorString), commandLine);
+    }
 
-public interface SoxSink {
-    sox_format_t create(sox_format_t signal);
-
-    default Path getPath() {
-        return Paths.get("-");
+    public SoxProcessTimeoutException(SoxProcessTimeoutException other) {
+        super(other);
     }
 }

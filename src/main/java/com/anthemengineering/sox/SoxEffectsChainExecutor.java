@@ -14,18 +14,10 @@
  *  limitations under the License.
  */
 
-package com.anthemengineering.sox.format;
+package com.anthemengineering.sox;
 
-import com.anthemengineering.sox.jna.sox_format_t;
+import java.util.concurrent.CompletableFuture;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-
-public interface SoxSink {
-    sox_format_t create(sox_format_t signal);
-
-    default Path getPath() {
-        return Paths.get("-");
-    }
+public interface SoxEffectsChainExecutor {
+    CompletableFuture<Void> execute(SoxEffectsChainBuilder soxEffectsChain);
 }
